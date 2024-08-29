@@ -7,10 +7,10 @@ public class Promotion {
     private String description;
     private Date dateDebut;
     private Date dateFin;
-    ReductionType reductionType;
+    private ReductionType reductionType;
     private float reductionValue;
     private String conditions;
-    PromoStatus promoStatus;
+    private PromoStatus promoStatus;
 
     public Promotion(int id, String promoName, String description, Date dateDebut, Date dateFin, ReductionType reductionType, float reductionValue, String conditions, PromoStatus promoStatus) {
 

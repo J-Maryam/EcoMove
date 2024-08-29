@@ -5,10 +5,10 @@ public class Partenaire {
     private int id;
     private String companyName;
     private String contactCommercial;
-    PartenaireStatut partenaireStatut;
+    private PartenaireStatut partenaireStatut;
     private String geographicZone;
     private String conditionsSpeciales;
-    TransportType transportType ;
+    private TransportType transportType ;
     private Date dateCreation;
 
     public Partenaire(int id, String companyName, String contactCommercial, PartenaireStatut partenaireStatut, String geographicZone, String conditionsSpeciales, TransportType transportType, Date dateCreation) {
