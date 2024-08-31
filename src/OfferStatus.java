@@ -1,4 +1,4 @@
-public enum PromoStatus {
+public enum OfferStatus {
     active,
     expired,
     suspended
