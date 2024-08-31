@@ -3,26 +3,26 @@ import java.util.Date;
 public class Promotion {
 
     private int id;
-    private String promoName;
+    private String offerName;
     private String description;
-    private Date dateDebut;
-    private Date dateFin;
-    private ReductionType reductionType;
-    private float reductionValue;
+    private Date startDate;
+    private Date endDate;
+    private DiscountType discountType;
+    private float discountValue;
     private String conditions;
-    private PromoStatus promoStatus;
+    private OfferStatus offerStatus;
 
-    public Promotion(int id, String promoName, String description, Date dateDebut, Date dateFin, ReductionType reductionType, float reductionValue, String conditions, PromoStatus promoStatus) {
+    public Promotion(int id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus) {
 
         this.id = id;
-        this.promoName = promoName;
+        this.offerName = offerName;
         this.description = description;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.reductionType = reductionType;
-        this.reductionValue = reductionValue;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.discountType = discountType;
+        this.discountValue = discountValue;
         this.conditions = conditions;
-        this.promoStatus = promoStatus;
+        this.offerStatus = offerStatus;
 
     }
 
@@ -34,12 +34,12 @@ public class Promotion {
         this.id = id;
     }
 
-    public String getPromoName() {
-        return promoName;
+    public String getOfferName() {
+        return offerName;
     }
 
-    public void setPromoName(String promoName) {
-        this.promoName = promoName;
+    public void setOfferName(String offerName) {
+        this.offerName = offerName;
     }
 
     public String getDescription() {
@@ -50,36 +50,36 @@ public class Promotion {
         this.description = description;
     }
 
-    public Date getDateDebut() {
-        return dateDebut;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getDateFin() {
-        return dateFin;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public ReductionType getReductionType() {
-        return reductionType;
+    public DiscountType getDiscountType() {
+        return discountType;
     }
 
-    public void setReductionType(ReductionType reductionType) {
-        this.reductionType = reductionType;
+    public void setDiscountType(DiscountType discountType) {
+        this.discountType = discountType;
     }
 
-    public float getReductionValue() {
-        return reductionValue;
+    public float getDiscountValue() {
+        return discountValue;
     }
 
-    public void setReductionValue(float reductionValue) {
-        this.reductionValue = reductionValue;
+    public void setDiscountValue(float discountValue) {
+        this.discountValue = discountValue;
     }
 
     public String getConditions() {
@@ -90,12 +90,12 @@ public class Promotion {
         this.conditions = conditions;
     }
 
-    public PromoStatus getPromoStatus() {
-        return promoStatus;
+    public OfferStatus getOfferStatus() {
+        return offerStatus;
     }
 
-    public void setPromoStatus(PromoStatus promoStatus) {
-        this.promoStatus = promoStatus;
+    public void setOfferStatus(OfferStatus offerStatus) {
+        this.offerStatus = offerStatus;
     }
 
 }
