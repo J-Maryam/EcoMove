@@ -2,7 +2,7 @@
 create type transportType as enum ('airplane', 'train', 'bus');
 create type partnerStatus as enum ('active', 'inactive', 'suspended');
 create type contractStatus as enum ('ongoing', 'terminated', 'canceled');
-create type discountType as enum ('pourcentage', 'fixedAmount');
+create type discountType as enum ('pourcentage', 'fixedPrice');
 create type offerStatus as enum ('active', 'expired', 'suspended');
 create type ticketStatus as enum ('sold', 'canceled', 'pending');
 
