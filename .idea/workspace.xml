@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PartnerStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcoMove.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EcoMove.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Partenaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PartenaireStatut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,11 +98,26 @@
       <updated>1724929307728</updated>
       <workItem from="1724929308916" duration="22370000" />
       <workItem from="1725024986417" duration="7055000" />
-      <workItem from="1725106233570" duration="2286000" />
+      <workItem from="1725106233570" duration="5828000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Promotion.java</url>
+          <line>14</line>
+          <properties class="Promotion" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
