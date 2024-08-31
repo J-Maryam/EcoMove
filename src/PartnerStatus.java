@@ -1,4 +1,4 @@
-public enum PartenaireStatut {
+public enum PartnerStatus {
     active,
     inactive,
     suspended

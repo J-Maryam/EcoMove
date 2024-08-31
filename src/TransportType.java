@@ -1,5 +1,5 @@
 public enum TransportType {
-    avion,
+    airplane,
     train,
     bus
 }
