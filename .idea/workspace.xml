@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/enums/ContractStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/DiscountType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/OfferStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/PartnerStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/TicketStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/TransportType.java" beforeDir="false" />
-    </list>
+    <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +95,7 @@
       <updated>1724929307728</updated>
       <workItem from="1724929308916" duration="22370000" />
       <workItem from="1725024986417" duration="7055000" />
-      <workItem from="1725106233570" duration="8346000" />
+      <workItem from="1725106233570" duration="8667000" />
     </task>
     <servers />
   </component>
