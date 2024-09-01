@@ -98,26 +98,11 @@
       <updated>1724929307728</updated>
       <workItem from="1724929308916" duration="22370000" />
       <workItem from="1725024986417" duration="7055000" />
-      <workItem from="1725106233570" duration="5828000" />
+      <workItem from="1725106233570" duration="8050000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Promotion.java</url>
-          <line>14</line>
-          <properties class="Promotion" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

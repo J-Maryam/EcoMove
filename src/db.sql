@@ -26,7 +26,9 @@ create table contract
     specialRate decimal,
     agreementConditions text,
     renewable boolean,
-    contractStatus contractStatus
+    contractStatus contractStatus,
+    partnerId UUID,
+    foreign key (partnerId) references partner(id)
 );
 
 create table promo
@@ -38,7 +40,9 @@ create table promo
     endDate date,
     discountType discountType,
     conditions text,
-    offerStatus offerStatus
+    offerStatus offerStatus,
+    contractId UUID,
+    foreign key (contractId) references contract(id)
 )
 
 create table ticket
@@ -48,6 +52,7 @@ create table ticket
     purchasePrice decimal,
     salePrice decimal,
     saleDate timestamp,
-    ticketStatus ticketStatus
-
+    ticketStatus ticketStatus,
+    contractId UUID,
+    foreign key (contractId) references contract(id)
 )
