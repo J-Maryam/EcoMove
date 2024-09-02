@@ -1,3 +1,6 @@
+import models.enums.DiscountType;
+import models.enums.OfferStatus;
+
 import java.util.Date;
 
 public class Promotion {

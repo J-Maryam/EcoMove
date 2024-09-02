@@ -1,4 +1,5 @@
-import config.DbFunctions;
+package controllers;
+
 import dao.PartnerDao;
 import models.entities.Partner;
 import models.enums.PartnerStatus;
@@ -6,21 +7,20 @@ import models.enums.TransportType;
 
 import java.sql.Connection;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
+public class PartnerControllers {
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    private static Scanner scanner = new Scanner(System.in);
+    private PartnerDao partnerDao;
+    private Scanner scanner;
 
-    public static void main(String[] args) {
+    public PartnerControllers(Connection connection) {
+        this.partnerDao = new PartnerDao(connection);
+        this.scanner = new Scanner(System.in);
+    }
 
-        DbFunctions db = new DbFunctions();
-        Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
-
+//    public void createPartner(){
 //        System.out.println("Enter company name: ");
 //        String companyName = scanner.nextLine();
 //
@@ -50,11 +50,7 @@ public class Main {
 //                LocalDate.now()
 //        );
 //
-        PartnerDao partnerDao = new PartnerDao(connection);
 //        partnerDao.createPartner(partner);
 //        System.out.println("Partner added successfully");
-
-        partnerDao.viewAllPartners();
-
-    }
+//    }
 }

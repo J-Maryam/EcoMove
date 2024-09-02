@@ -1,3 +1,5 @@
+import models.enums.ContractStatus;
+
 import java.util.Date;
 
 public class Contract {

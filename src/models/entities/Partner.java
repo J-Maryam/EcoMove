@@ -1,17 +1,24 @@
+package models.entities;
+
+import models.enums.PartnerStatus;
+import models.enums.TransportType;
+
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
 public class Partner {
 
-    private int id;
+    private UUID id;
     private String companyName;
     private String businessContact;
-    private PartnerStatus partnerStatus;
+    private TransportType transportType ;
     private String geographicZone;
     private String specialConditions;
-    private TransportType transportType ;
-    private Date creationDate;
+    private PartnerStatus partnerStatus;
+    private LocalDate creationDate;
 
-    public Partner(int id, String companyName, String businessContact, PartnerStatus partnerStatus, String geographicZone, String specialConditions, TransportType transportType, Date creationDate) {
+    public Partner(UUID id, String companyName, String businessContact, TransportType transportType, String geographicZone, String specialConditions, PartnerStatus partnerStatus, LocalDate creationDate) {
         this.id = id;
         this.companyName = companyName;
         this.businessContact = businessContact;
@@ -22,11 +29,11 @@ public class Partner {
         this.creationDate = creationDate;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -46,12 +53,12 @@ public class Partner {
         this.businessContact = businessContact;
     }
 
-    public PartnerStatus getPartnerStatus() {
-        return partnerStatus;
+    public TransportType getTransportType() {
+        return transportType;
     }
 
-    public void setPartnerStatus(PartnerStatus partnerStatus) {
-        this.partnerStatus = partnerStatus;
+    public void setTransportType(TransportType transportType) {
+        this.transportType = transportType;
     }
 
     public String getGeographicZone() {
@@ -70,20 +77,19 @@ public class Partner {
         this.specialConditions = specialConditions;
     }
 
-    public TransportType getTransportType() {
-        return transportType;
+    public PartnerStatus getPartnerStatus() {
+        return partnerStatus;
     }
 
-    public void setTransportType(TransportType transportType) {
-        this.transportType = transportType;
+    public void setPartnerStatus(PartnerStatus partnerStatus) {
+        this.partnerStatus = partnerStatus;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
-
 }

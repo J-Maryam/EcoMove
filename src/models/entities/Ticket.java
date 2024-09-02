@@ -1,3 +1,6 @@
+import models.enums.TicketStatus;
+import models.enums.TransportType;
+
 import java.util.Date;
 
 public class Ticket {
