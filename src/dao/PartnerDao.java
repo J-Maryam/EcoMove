@@ -16,7 +16,7 @@ public class PartnerDao {
         this.connection = connection;
     }
 
-    public void createPartner(Partner partner)
+    public boolean createPartner(Partner partner)
     {
         String sql = "insert into partner (id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate) values (?,?,?,?,?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -29,10 +29,13 @@ public class PartnerDao {
             ps.setString(6, partner.getSpecialConditions());
             ps.setObject(7, partner.getPartnerStatus().toString(), java.sql.Types.OTHER);
             ps.setDate(8, java.sql.Date.valueOf(partner.getCreationDate()));
-            ps.executeUpdate();
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
@@ -43,25 +46,22 @@ public class PartnerDao {
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
 
+            boolean hasResults = false;
             while (rs.next()) {
-                UUID id = (UUID) rs.getObject("id");
-                String companyName = rs.getString("companyName");
-                String businessContact = rs.getString("businessContact");
-                TransportType transportType = TransportType.valueOf(rs.getString("transportType"));
-                String geographicZone = rs.getString("geographicZone");
-                String specialConditions = rs.getString("specialConditions");
-                PartnerStatus partnerStatus = PartnerStatus.valueOf(rs.getString("partnerStatus"));
-                LocalDate creationDate = rs.getDate("creationDate").toLocalDate();
+                hasResults = true;
+                System.out.println("Partner ID: " + rs.getObject("id"));
+                System.out.println("Company Name: " + rs.getString("nomCompagnie"));
+                System.out.println("Contact Person: " + rs.getString("contactCommercial"));
+                System.out.println("Transport Type: " + rs.getString("typeTransport"));
+                System.out.println("Geographic Zone: " + rs.getString("zoneGeographique"));
+                System.out.println("Special Conditions: " + rs.getString("conditionsSpeciales"));
+                System.out.println("Status: " + rs.getString("statutPartenaire"));
+                System.out.println("Date Created: " + rs.getDate("dateCreation"));
+                System.out.println("-----------------------------------");
+            }
 
-                System.out.println("ID: " + id);
-                System.out.println("Company Name: " + companyName);
-                System.out.println("Business Contact: " + businessContact);
-                System.out.println("Transport Type: " + transportType);
-                System.out.println("Geographic Zone: " + geographicZone);
-                System.out.println("Special Conditions: " + specialConditions);
-                System.out.println("Partner Status: " + partnerStatus);
-                System.out.println("Creation Date: " + creationDate);
-                System.out.println("==================================");
+            if (!hasResults) {
+                System.out.println("No partners found");
             }
 
         } catch (SQLException e) {
