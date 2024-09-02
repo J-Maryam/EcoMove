@@ -6,6 +6,18 @@ import java.sql.Statement;
 
 public class DbFunctions {
 
+    private static DbFunctions instance;
+    private Connection con;
+
+    private DbFunctions() {}
+
+    public static DbFunctions getInstance() {
+        if (instance == null) {
+            instance = new DbFunctions();
+        }
+        return instance;
+    }
+
     public Connection connectToDb( String dbName, String user, String pass) {
         Connection con = null;
         try {

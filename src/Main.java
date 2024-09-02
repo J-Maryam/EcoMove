@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DbFunctions db = new DbFunctions();
+        DbFunctions db = DbFunctions.getInstance();
         Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
 
 //        addPartner
