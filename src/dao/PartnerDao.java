@@ -69,5 +69,32 @@ public class PartnerDao {
         }
     }
 
+    public void updatePartner(Partner partner)
+    {
+        String sql = "UPDATE partner SET companyName = ?, businessContact = ?, transportType = ?, geographicZone = ?, specialConditions = ?, partnerStatus = ?, creationDate = ? WHERE id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setObject(1, partner.getCompanyName());
+            ps.setString(2, partner.getBusinessContact());
+            ps.setObject(3, partner.getTransportType().toString(), java.sql.Types.OTHER);
+            ps.setString(4, partner.getGeographicZone());
+            ps.setString(5, partner.getSpecialConditions());
+            ps.setObject(6, partner.getPartnerStatus().toString(), java.sql.Types.OTHER);
+            ps.setDate(7, java.sql.Date.valueOf(partner.getCreationDate()));
+            ps.setObject(8, partner.getId());
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Partner updated successfully.");
+            } else {
+                System.out.println("No partner found with the provided ID.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

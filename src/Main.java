@@ -56,5 +56,40 @@ public class Main {
 
         partnerDao.viewAllPartners();
 
+        System.out.println("Enter the ID of the partner to modify: ");
+        UUID partnerId = UUID.fromString(scanner.nextLine());
+
+        System.out.println("Enter new company name: ");
+        String newCompanyName = scanner.nextLine();
+
+        System.out.print("Enter new contact person: ");
+        String newBusinessContact = scanner.nextLine();
+
+        System.out.print("Enter new type of transport (airplane, train, bus): ");
+        String newTransportType = scanner.nextLine();
+
+        System.out.print("Enter new geographical zone: ");
+        String newGeographicZone = scanner.nextLine();
+
+        System.out.print("Enter new special conditions: ");
+        String newSpecialConditions = scanner.nextLine();
+
+        System.out.print("Enter new status (active, inactive, suspended): ");
+        String newPartnerStatus = scanner.nextLine();
+
+        Partner updatedPartner = new Partner(
+                partnerId,
+                newCompanyName,
+                newBusinessContact,
+                TransportType.valueOf(newTransportType.toLowerCase()),
+                newGeographicZone,
+                newSpecialConditions,
+                PartnerStatus.valueOf(newPartnerStatus.toLowerCase()),
+                LocalDate.now()
+        );
+
+        partnerDao.updatePartner(updatedPartner);
+        partnerDao.viewAllPartners();
+
     }
 }
