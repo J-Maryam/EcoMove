@@ -21,6 +21,7 @@ public class Main {
         DbFunctions db = new DbFunctions();
         Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
 
+//        addPartner
 //        System.out.println("Enter company name: ");
 //        String companyName = scanner.nextLine();
 //
@@ -49,47 +50,54 @@ public class Main {
 //                PartnerStatus.valueOf(partnerStatus.toLowerCase()),
 //                LocalDate.now()
 //        );
-//
+
         PartnerDao partnerDao = new PartnerDao(connection);
 //        partnerDao.createPartner(partner);
 //        System.out.println("Partner added successfully");
 
         partnerDao.viewAllPartners();
 
-        System.out.println("Enter the ID of the partner to modify: ");
+//        updatePartner
+//        System.out.println("Enter the ID of the partner to modify: ");
+//        UUID partnerId = UUID.fromString(scanner.nextLine());
+//
+//        System.out.println("Enter new company name: ");
+//        String newCompanyName = scanner.nextLine();
+//
+//        System.out.print("Enter new contact person: ");
+//        String newBusinessContact = scanner.nextLine();
+//
+//        System.out.print("Enter new type of transport (airplane, train, bus): ");
+//        String newTransportType = scanner.nextLine();
+//
+//        System.out.print("Enter new geographical zone: ");
+//        String newGeographicZone = scanner.nextLine();
+//
+//        System.out.print("Enter new special conditions: ");
+//        String newSpecialConditions = scanner.nextLine();
+//
+//        System.out.print("Enter new status (active, inactive, suspended): ");
+//        String newPartnerStatus = scanner.nextLine();
+//
+//        Partner updatedPartner = new Partner(
+//                partnerId,
+//                newCompanyName,
+//                newBusinessContact,
+//                TransportType.valueOf(newTransportType.toLowerCase()),
+//                newGeographicZone,
+//                newSpecialConditions,
+//                PartnerStatus.valueOf(newPartnerStatus.toLowerCase()),
+//                LocalDate.now()
+//        );
+//
+//        partnerDao.updatePartner(updatedPartner);
+//        partnerDao.viewAllPartners();
+
+
+//        deletePartner
+        System.out.println("Enter the ID of the partner to delete: ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
 
-        System.out.println("Enter new company name: ");
-        String newCompanyName = scanner.nextLine();
-
-        System.out.print("Enter new contact person: ");
-        String newBusinessContact = scanner.nextLine();
-
-        System.out.print("Enter new type of transport (airplane, train, bus): ");
-        String newTransportType = scanner.nextLine();
-
-        System.out.print("Enter new geographical zone: ");
-        String newGeographicZone = scanner.nextLine();
-
-        System.out.print("Enter new special conditions: ");
-        String newSpecialConditions = scanner.nextLine();
-
-        System.out.print("Enter new status (active, inactive, suspended): ");
-        String newPartnerStatus = scanner.nextLine();
-
-        Partner updatedPartner = new Partner(
-                partnerId,
-                newCompanyName,
-                newBusinessContact,
-                TransportType.valueOf(newTransportType.toLowerCase()),
-                newGeographicZone,
-                newSpecialConditions,
-                PartnerStatus.valueOf(newPartnerStatus.toLowerCase()),
-                LocalDate.now()
-        );
-
-        partnerDao.updatePartner(updatedPartner);
-        partnerDao.viewAllPartners();
-
+        partnerDao.deletePartner(partnerId);
     }
 }

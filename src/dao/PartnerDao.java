@@ -96,5 +96,23 @@ public class PartnerDao {
         }
     }
 
+    public void deletePartner(UUID id)
+    {
+        String sql = "DELETE FROM partner WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setObject(1, id);
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Partner deleted successfully.");
+            }else {
+                System.out.println("No partner found with the provided ID.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
