@@ -1,6 +1,8 @@
 import config.DbFunctions;
 import dao.PartnerDao;
+import dao.PromoDao;
 import models.entities.Partner;
+import models.entities.Promotion;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
 
@@ -99,5 +101,9 @@ public class Main {
 //        UUID partnerId = UUID.fromString(scanner.nextLine());
 //
 //        partnerDao.deletePartner(partnerId);
+
+        PromoDao promoDao = new PromoDao(connection);
+        promoDao.displayPromotions();
+
     }
 }

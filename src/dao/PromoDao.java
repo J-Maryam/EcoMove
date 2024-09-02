@@ -2,11 +2,10 @@ package dao;
 
 
 import models.entities.Promotion;
+import models.enums.DiscountType;
+import models.enums.OfferStatus;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PromoDao {
 
@@ -43,5 +42,47 @@ public class PromoDao {
             e.printStackTrace();
         }
     }
+
+    public void displayPromotions()
+    {
+        String sql = "SELECT * FROM promo";
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            boolean hasPromotions = false;
+
+            while (rs.next()) {
+
+                hasPromotions = true;
+
+                int id = rs.getInt("id");
+                String offerName = rs.getString("offerName");
+                String description = rs.getString("description");
+                Date startDate = rs.getDate("startDate");
+                Date endDate = rs.getDate("endDate");
+                DiscountType discountType = DiscountType.valueOf(rs.getString("discountType"));
+                String conditions = rs.getString("conditions");
+                OfferStatus offerStatus = OfferStatus.valueOf(rs.getString("offerStatus"));
+
+                System.out.println("ID: " + id);
+                System.out.println("Offer Name: " + offerName);
+                System.out.println("Description: " + description);
+                System.out.println("Start Date: " + startDate);
+                System.out.println("End Date: " + endDate);
+                System.out.println("Discount Type: " + discountType);
+                System.out.println("Conditions: " + conditions);
+                System.out.println("Offer Status: " + offerStatus);
+                System.out.println("==================================");
+
+            }
+
+            if (!hasPromotions) {
+                System.out.println("No promotions found");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

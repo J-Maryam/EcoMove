@@ -55,7 +55,7 @@ public class Promotion {
         this.description = description;
     }
 
-    public java.sql.Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
@@ -63,7 +63,7 @@ public class Promotion {
         this.startDate = startDate;
     }
 
-    public java.sql.Date getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
