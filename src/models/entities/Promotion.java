@@ -1,3 +1,5 @@
+package models.entities;
+
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
 
@@ -53,7 +55,7 @@ public class Promotion {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public java.sql.Date getStartDate() {
         return startDate;
     }
 
@@ -61,7 +63,7 @@ public class Promotion {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public java.sql.Date getEndDate() {
         return endDate;
     }
 

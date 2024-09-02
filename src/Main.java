@@ -55,7 +55,7 @@ public class Main {
 //        partnerDao.createPartner(partner);
 //        System.out.println("Partner added successfully");
 
-        partnerDao.viewAllPartners();
+//        partnerDao.viewAllPartners();
 
 //        updatePartner
 //        System.out.println("Enter the ID of the partner to modify: ");
@@ -95,9 +95,9 @@ public class Main {
 
 
 //        deletePartner
-        System.out.println("Enter the ID of the partner to delete: ");
-        UUID partnerId = UUID.fromString(scanner.nextLine());
-
-        partnerDao.deletePartner(partnerId);
+//        System.out.println("Enter the ID of the partner to delete: ");
+//        UUID partnerId = UUID.fromString(scanner.nextLine());
+//
+//        partnerDao.deletePartner(partnerId);
     }
 }
