@@ -1,11 +1,8 @@
 package dao;
 
 import models.entities.Partner;
-import models.enums.PartnerStatus;
-import models.enums.TransportType;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class PartnerDao {
@@ -40,15 +37,13 @@ public class PartnerDao {
 
     }
 
-    public void viewAllPartners()
+    public boolean viewAllPartners()
     {
         String sql = "SELECT * FROM partner";
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
 
-            boolean hasResults = false;
             while (rs.next()) {
-                hasResults = true;
                 System.out.println("Partner ID: " + rs.getObject("id"));
                 System.out.println("Company Name: " + rs.getString("nomCompagnie"));
                 System.out.println("Contact Person: " + rs.getString("contactCommercial"));
@@ -60,16 +55,13 @@ public class PartnerDao {
                 System.out.println("-----------------------------------");
             }
 
-            if (!hasResults) {
-                System.out.println("No partners found");
-            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void updatePartner(Partner partner)
+    public int updatePartner(Partner partner)
     {
         String sql = "UPDATE partner SET companyName = ?, businessContact = ?, transportType = ?, geographicZone = ?, specialConditions = ?, partnerStatus = ?, creationDate = ? WHERE id = ?";
 
@@ -85,34 +77,27 @@ public class PartnerDao {
             ps.setObject(8, partner.getId());
 
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Partner updated successfully.");
-            } else {
-                System.out.println("No partner found with the provided ID.");
-            }
+            return rowsAffected;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
-    public void deletePartner(UUID id)
+    public int deletePartner(UUID id)
     {
         String sql = "DELETE FROM partner WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, id);
 
             int rowsAffected = ps.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("Partner deleted successfully.");
-            }else {
-                System.out.println("No partner found with the provided ID.");
-            }
+            return rowsAffected;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
 }

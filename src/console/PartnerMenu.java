@@ -93,7 +93,12 @@ public class PartnerMenu {
     }
 
     public void viewAllPartner(){
-        partnerDao.viewAllPartners();
+
+        boolean displayed =  partnerDao.viewAllPartners();
+        if (!displayed) {
+            System.out.println("No partners found");
+        }
+
     }
 
     public void updatePartner(){
@@ -130,16 +135,29 @@ public class PartnerMenu {
                 LocalDate.now()
         );
 
-        partnerDao.updatePartner(updatedPartner);
+        int updated = partnerDao.updatePartner(updatedPartner);
+        if (updated > 0){
+            System.out.println("Partner updated successfully");
+        }else {
+            System.out.println("Partner not updated");
+        }
+
         partnerDao.viewAllPartners();
 
     }
 
     public void deletePartner(){
+
         System.out.println("Enter the ID of the partner to delete: ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
 
-        partnerDao.deletePartner(partnerId);
+        int deleted = partnerDao.deletePartner(partnerId);
+
+        if (deleted > 0){
+            System.out.println("Partner deleted successfully");
+        }else {
+            System.out.println("Partner not deleted");
+        }
     }
 
 
