@@ -4,10 +4,11 @@ import models.enums.DiscountType;
 import models.enums.OfferStatus;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Promotion {
 
-    private int id;
+    private UUID id;
     private String offerName;
     private String description;
     private Date startDate;
@@ -16,8 +17,9 @@ public class Promotion {
     private float discountValue;
     private String conditions;
     private OfferStatus offerStatus;
+    private UUID contractId;
 
-    public Promotion(int id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus) {
+    public Promotion(UUID id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus, UUID contractId) {
 
         this.id = id;
         this.offerName = offerName;
@@ -28,14 +30,15 @@ public class Promotion {
         this.discountValue = discountValue;
         this.conditions = conditions;
         this.offerStatus = offerStatus;
+        this.contractId = contractId;
 
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -101,6 +104,22 @@ public class Promotion {
 
     public void setOfferStatus(OfferStatus offerStatus) {
         this.offerStatus = offerStatus;
+    }
+
+    public UUID getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(UUID contractId) {
+        this.contractId = contractId;
+    }
+
+    public UUID getContract() {
+        return contractId;
+    }
+
+    public void setContract(UUID contractId) {
+        this.contractId = contractId;
     }
 
 }
