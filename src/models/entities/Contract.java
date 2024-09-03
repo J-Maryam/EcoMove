@@ -1,18 +1,22 @@
+package models.entities;
+
 import models.enums.ContractStatus;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Contract {
 
-    private int id;
+    private UUID id;
     private Date startDate;
     private Date endDate;
     private float specialRate;
     private String agreementConditions;
     private boolean renewable;
     private ContractStatus contractStatus;
+    private UUID partnerId;
 
-    public Contract(int id, Date startDate, Date endDate, float specialRate, String agreementConditions, boolean renewable, ContractStatus contractStatus) {
+    public Contract(UUID id, Date startDate, Date endDate, float specialRate, String agreementConditions, boolean renewable, ContractStatus contractStatus, UUID partnerId) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -20,13 +24,14 @@ public class Contract {
         this.agreementConditions = agreementConditions;
         this.renewable = renewable;
         this.contractStatus = contractStatus;
+        this.partnerId = partnerId;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -76,6 +81,14 @@ public class Contract {
 
     public void setContractStatus(ContractStatus contractStatus) {
         this.contractStatus = contractStatus;
+    }
+
+    public UUID getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(UUID partnerId) {
+        this.partnerId = partnerId;
     }
 
 }
