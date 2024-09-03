@@ -1,31 +1,36 @@
+package models.entities;
+
 import models.enums.TicketStatus;
 import models.enums.TransportType;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Ticket {
 
-    private int id;
+    private UUID id;
     private TransportType transportType;
     private float purchasePrice;
     private float salePrice;
     private Date saleDate;
     private TicketStatus ticketStatus;
+    private Contract contract;
 
-    public Ticket(int id, TransportType transportType, float purchasePrice, float salePrice, Date saleDate, TicketStatus ticketStatus) {
+    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, Date saleDate, TicketStatus ticketStatus, Contract contract) {
         this.id = id;
         this.transportType = transportType;
         this.purchasePrice = purchasePrice;
         this.salePrice = salePrice;
         this.saleDate = saleDate;
         this.ticketStatus = ticketStatus;
+        this.contract = contract;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -67,6 +72,14 @@ public class Ticket {
 
     public void setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
 }
