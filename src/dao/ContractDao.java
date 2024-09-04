@@ -20,8 +20,8 @@ public class ContractDao {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, contract.getId());
-            ps.setDate(2, new java.sql.Date(contract.getStartDate().getTime())); // Conversion en java.sql.Date
-            ps.setDate(3, new java.sql.Date(contract.getEndDate().getTime())); // Conversion en java.sql.Date
+            ps.setDate(2, new java.sql.Date(contract.getStartDate().getTime()));
+            ps.setDate(3, new java.sql.Date(contract.getEndDate().getTime()));
             ps.setFloat(4, contract.getSpecialRate());
             ps.setString(5, contract.getAgreementConditions());
             ps.setBoolean(6, contract.isRenewable());
@@ -105,4 +105,31 @@ public class ContractDao {
         }
         return false;
     }
+
+//    public Contract getContractById(UUID contractId) {
+//        String sql = "SELECT * FROM contract WHERE id = ?";
+//
+//        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ps.setObject(1, contractId, java.sql.Types.OTHER);
+//            ResultSet rs = ps.executeQuery();
+//
+//            if (rs.next()) {
+//                return new Contract(
+//                        contractId,
+//                        rs.getDate("startDate"),
+//                        rs.getDate("endDate"),
+//                        rs.getFloat("specialRate"),
+//                        rs.getString("agreementConditions"),
+//                        rs.getBoolean("renewable"),
+//                        ContractStatus.valueOf(rs.getString("contractStatus")),
+//                        contractId
+//                );
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null; // ou lancer une exception si vous préférez
+//    }
+
 }

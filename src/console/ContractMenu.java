@@ -6,6 +6,7 @@ import models.entities.Promotion;
 import models.enums.ContractStatus;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
+import models.enums.TransportType;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -57,8 +58,6 @@ public class ContractMenu {
     }
 
     public void createContract() {
-        System.out.println("Enter contract ID (UUID): ");
-        UUID contractId = UUID.fromString(scanner.nextLine());
 
         System.out.print("Enter start date (yyyy-mm-dd): ");
         String startDateStr = scanner.nextLine();
@@ -77,21 +76,20 @@ public class ContractMenu {
         System.out.print("Enter if the contract is renewable (true/false): ");
         boolean renewable = Boolean.parseBoolean(scanner.nextLine());
 
-        System.out.print("Enter contract status (active, expired, suspended): ");
-        String contractStatusStr = scanner.nextLine();
-        ContractStatus contractStatus = ContractStatus.valueOf(contractStatusStr.toUpperCase());
+        System.out.print("Enter contract status (ongoing, terminated, suspended): ");
+        String contractStatus = scanner.nextLine();
 
         System.out.print("Enter partner ID (UUID): ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
 
         Contract newContract = new Contract(
-                contractId,
+                UUID.randomUUID(),
                 startDate,
                 endDate,
                 specialRate,
                 agreementConditions,
                 renewable,
-                contractStatus,
+                ContractStatus.valueOf(contractStatus.toLowerCase()),
                 partnerId
         );
 
@@ -125,6 +123,7 @@ public class ContractMenu {
 
     public void updateContract() {
 
+        displayAllContracts();
         System.out.println("Enter the ID of the contract to modify (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
@@ -145,9 +144,9 @@ public class ContractMenu {
         System.out.print("Enter if the contract is renewable (true/false): ");
         boolean renewable = Boolean.parseBoolean(scanner.nextLine());
 
-        System.out.print("Enter new contract status (active, expired, suspended): ");
+        System.out.print("Enter new contract status (ongoing, terminated, suspended): ");
         String contractStatusStr = scanner.nextLine();
-        ContractStatus contractStatus = ContractStatus.valueOf(contractStatusStr.toUpperCase());
+        ContractStatus contractStatus = ContractStatus.valueOf(contractStatusStr.toLowerCase());
 
         System.out.print("Enter new partner ID (UUID): ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
@@ -167,6 +166,7 @@ public class ContractMenu {
         boolean isUpdated = contractDao.updateContract(updatedContract);
         if (isUpdated) {
             System.out.println("Contract updated successfully.");
+            displayAllContracts();
         }else {
             System.out.println("Contract not updated.");
         }
@@ -175,6 +175,8 @@ public class ContractMenu {
 
     public void deleteContract() {
 
+        displayAllContracts();
+
         System.out.println("Enter the ID of the contract to delete (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
@@ -182,6 +184,7 @@ public class ContractMenu {
 
         if (isDeleted) {
             System.out.println("Contract deleted successfully.");
+            displayAllContracts();
         } else {
             System.out.println("Contract could not be deleted or does not exist.");
         }
