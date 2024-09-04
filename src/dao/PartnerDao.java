@@ -45,15 +45,16 @@ public class PartnerDao {
 
             while (rs.next()) {
                 System.out.println("Partner ID: " + rs.getObject("id"));
-                System.out.println("Company Name: " + rs.getString("nomCompagnie"));
-                System.out.println("Contact Person: " + rs.getString("contactCommercial"));
-                System.out.println("Transport Type: " + rs.getString("typeTransport"));
-                System.out.println("Geographic Zone: " + rs.getString("zoneGeographique"));
-                System.out.println("Special Conditions: " + rs.getString("conditionsSpeciales"));
-                System.out.println("Status: " + rs.getString("statutPartenaire"));
-                System.out.println("Date Created: " + rs.getDate("dateCreation"));
+                System.out.println("Company Name: " + rs.getString("companyName"));
+                System.out.println("Contact Person: " + rs.getString("businessContact"));
+                System.out.println("Transport Type: " + rs.getString("transportType"));
+                System.out.println("Geographic Zone: " + rs.getString("geographicZone"));
+                System.out.println("Special Conditions: " + rs.getString("specialConditions"));
+                System.out.println("Status: " + rs.getString("partnerStatus"));
+                System.out.println("Date Created: " + rs.getDate("creationDate"));
                 System.out.println("-----------------------------------");
             }
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();

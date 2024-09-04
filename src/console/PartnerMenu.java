@@ -95,8 +95,10 @@ public class PartnerMenu {
     public void viewAllPartner(){
 
         boolean displayed =  partnerDao.viewAllPartners();
-        if (!displayed) {
-            System.out.println("No partners found");
+        if (displayed){
+            System.out.println("Partner list retrieved successfully");
+        }else {
+            System.out.println("Partner list empty");
         }
 
     }
