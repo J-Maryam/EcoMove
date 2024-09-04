@@ -58,7 +58,6 @@ public class PromoMenu {
         }
     }
 
-
     public void createPromotion() {
 
         System.out.println("Enter offer name: ");
@@ -76,18 +75,13 @@ public class PromoMenu {
         java.sql.Date endDate = java.sql.Date.valueOf(endDateStr);
 
         System.out.print("Enter discount type (pourcentage, fixe): ");
-        String discountTypeStr = scanner.nextLine();
-        DiscountType discountType = DiscountType.valueOf(discountTypeStr.toUpperCase());
-
-        System.out.print("Enter discount value : ");
-        Float discountValue = Float.valueOf(scanner.nextLine());
+        String discountType = scanner.nextLine();
 
         System.out.print("Enter conditions : ");
         String conditions = scanner.nextLine();
 
         System.out.print("Enter offer status (active, expired, suspended): ");
-        String offerStatusStr = scanner.nextLine();
-        OfferStatus offerStatus = OfferStatus.valueOf(offerStatusStr.toUpperCase());
+        String offerStatus = scanner.nextLine();
 
         System.out.print("Enter contract ID : ");
         UUID contractId = UUID.fromString(scanner.nextLine());
@@ -98,10 +92,9 @@ public class PromoMenu {
                 description,
                 startDate,
                 endDate,
-                discountType,
-                discountValue,
+                DiscountType.valueOf(discountType.toLowerCase()),
                 conditions,
-                offerStatus,
+                OfferStatus.valueOf(offerStatus.toLowerCase()),
                 contractId
         );
 
@@ -117,8 +110,10 @@ public class PromoMenu {
     public void viewAllPromotions(){
 
         boolean displayed =  promoDao.displayPromotions();
-        if (!displayed) {
-            System.out.println("There are no promotions.");
+        if (displayed) {
+            System.out.println("Promotions displayed successfully.");
+        }else {
+            System.out.println("No promotions found.");
         }
 
     }
@@ -142,19 +137,16 @@ public class PromoMenu {
         String newEndDate = scanner.nextLine();
         java.sql.Date endDate = java.sql.Date.valueOf(newEndDate);
 
-        System.out.print("Enter new discount type (pourcentage, fixedPrice): ");
+        System.out.print("Enter new discount type (pourcentage, fixed price): ");
         String newDiscountType = scanner.nextLine();
-        DiscountType discountType = DiscountType.valueOf(newDiscountType.toUpperCase());
-
-        System.out.print("Enter new discount value: ");
-        float newDiscountValue = Float.parseFloat(scanner.nextLine());
+        DiscountType discountType = DiscountType.valueOf(newDiscountType.toLowerCase());
 
         System.out.print("Enter new conditions: ");
         String newConditions = scanner.nextLine();
 
         System.out.print("Enter new offer status (active, expired, suspended): ");
         String newOfferStatus = scanner.nextLine();
-        OfferStatus offerStatus = OfferStatus.valueOf(newOfferStatus.toUpperCase());
+        OfferStatus offerStatus = OfferStatus.valueOf(newOfferStatus.toLowerCase());
 
         System.out.print("Enter new contract ID: ");
         UUID newContractId = UUID.fromString(scanner.nextLine());
@@ -166,7 +158,6 @@ public class PromoMenu {
                 startDate,
                 endDate,
                 discountType,
-                newDiscountValue,
                 newConditions,
                 offerStatus,
                 newContractId

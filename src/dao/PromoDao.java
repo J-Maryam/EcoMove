@@ -18,7 +18,7 @@ public class PromoDao {
 
     public boolean addPromotion(Promotion promotion) {
 
-        String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, conditions, offerStatus, contractId) value (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -28,10 +28,9 @@ public class PromoDao {
             ps.setDate(4, new java.sql.Date(promotion.getStartDate().getTime()));
             ps.setDate(5, new java.sql.Date(promotion.getEndDate().getTime()));
             ps.setObject(6, promotion.getDiscountType().toString(), java.sql.Types.OTHER);
-            ps.setFloat(7, promotion.getDiscountValue());
-            ps.setString(8, promotion.getConditions());
-            ps.setObject(9, promotion.getOfferStatus().toString(), java.sql.Types.OTHER);
-            ps.setObject(10, promotion.getContractId());
+            ps.setString(7, promotion.getConditions());
+            ps.setObject(8, promotion.getOfferStatus().toString(), java.sql.Types.OTHER);
+            ps.setObject(9, promotion.getContractId());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
@@ -66,6 +65,8 @@ public class PromoDao {
                 System.out.println("Contract ID: " + rs.getObject("contractID"));
                 System.out.println("===============================");
             }
+            return true;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,11 +85,10 @@ public class PromoDao {
             ps.setDate(3, new java.sql.Date(promotion.getStartDate().getTime()));
             ps.setDate(4, new java.sql.Date(promotion.getEndDate().getTime()));
             ps.setObject(5, promotion.getDiscountType().toString(), java.sql.Types.OTHER);
-            ps.setFloat(6, promotion.getDiscountValue());
-            ps.setString(7, promotion.getConditions());
-            ps.setObject(8, promotion.getOfferStatus().toString(), java.sql.Types.OTHER);
-            ps.setObject(9, promotion.getContractId());
-            ps.setObject(10, promotion.getId());
+            ps.setString(6, promotion.getConditions());
+            ps.setObject(7, promotion.getOfferStatus().toString(), java.sql.Types.OTHER);
+            ps.setObject(8, promotion.getContractId());
+            ps.setObject(9, promotion.getId());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
