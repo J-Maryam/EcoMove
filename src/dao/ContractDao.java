@@ -106,30 +106,40 @@ public class ContractDao {
         return false;
     }
 
-//    public Contract getContractById(UUID contractId) {
-//        String sql = "SELECT * FROM contract WHERE id = ?";
-//
-//        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-//            ps.setObject(1, contractId, java.sql.Types.OTHER);
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                return new Contract(
-//                        contractId,
-//                        rs.getDate("startDate"),
-//                        rs.getDate("endDate"),
-//                        rs.getFloat("specialRate"),
-//                        rs.getString("agreementConditions"),
-//                        rs.getBoolean("renewable"),
-//                        ContractStatus.valueOf(rs.getString("contractStatus")),
-//                        contractId
-//                );
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null; // ou lancer une exception si vous préférez
-//    }
+    public Contract getContractById(UUID id) {
+        String sql = "SELECT * FROM contract WHERE id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setObject(1, id, java.sql.Types.OTHER);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                UUID contractId = UUID.fromString(rs.getString("id"));
+                java.util.Date startDate = rs.getDate("startDate");
+                java.util.Date endDate = rs.getDate("endDate");
+                float specialRate = rs.getFloat("specialRate");
+                String agreementConditions = rs.getString("agreementConditions");
+                boolean renewable = rs.getBoolean("renewable");
+                ContractStatus contractStatus = ContractStatus.valueOf(rs.getString("contractStatus"));
+
+                return new Contract(
+                        contractId,
+                        startDate,
+                        endDate,
+                        specialRate,
+                        agreementConditions,
+                        renewable,
+                        contractStatus,
+                        contractId
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;  // Retourne null si le contrat n'est pas trouvé
+    }
 
 }

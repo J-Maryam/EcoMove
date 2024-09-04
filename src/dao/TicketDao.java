@@ -42,7 +42,7 @@ public class TicketDao {
     }
 
     public List<Ticket> getAllTickets() {
-        String sql = "SELECT t.*, c.* FROM ticket t LEFT JOIN contract c ON t.contractId = c.id";
+        String sql = "SELECT t.id, t.transportType, t.purchasePrice, t.salePrice, t.saleDate, t.ticketStatus, c.id as contractId, c.startDate, c.endDate, c.specialRate, c.agreementConditions, c.renewable, c.contractStatus FROM ticket t LEFT JOIN contract c ON t.contractId = c.id";
 
         List<Ticket> tickets = new ArrayList<>();
 
@@ -50,22 +50,22 @@ public class TicketDao {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                UUID ticketId = UUID.fromString(rs.getString("t.id"));
-                TransportType transportType = TransportType.valueOf(rs.getString("t.transportType"));
-                float purchasePrice = rs.getFloat("t.purchasePrice");
-                float salePrice = rs.getFloat("t.salePrice");
-                Date saleDate = rs.getDate("t.saleDate");
-                TicketStatus ticketStatus = TicketStatus.valueOf(rs.getString("t.ticketStatus"));
+                UUID ticketId = UUID.fromString(rs.getString("id"));
+                TransportType transportType = TransportType.valueOf(rs.getString("transportType"));
+                float purchasePrice = rs.getFloat("purchasePrice");
+                float salePrice = rs.getFloat("salePrice");
+                Date saleDate = rs.getDate("saleDate");
+                TicketStatus ticketStatus = TicketStatus.valueOf(rs.getString("ticketStatus"));
 
-                UUID contractId = UUID.fromString(rs.getString("c.id"));
+                UUID contractId = UUID.fromString(rs.getString("contractId"));
                 Contract contract = new Contract(
                         contractId,
-                        rs.getDate("c.startDate"),
-                        rs.getDate("c.endDate"),
-                        rs.getFloat("c.specialRate"),
-                        rs.getString("c.agreementConditions"),
-                        rs.getBoolean("c.renewable"),
-                        ContractStatus.valueOf(rs.getString("c.contractStatus")),
+                        rs.getDate("startDate"),
+                        rs.getDate("endDate"),
+                        rs.getFloat("specialRate"),
+                        rs.getString("agreementConditions"),
+                        rs.getBoolean("renewable"),
+                        ContractStatus.valueOf(rs.getString("contractStatus")),
                         contractId
                 );
 
@@ -91,11 +91,11 @@ public class TicketDao {
         String sql = "UPDATE ticket SET transportType = ?, purchasePrice = ?, salePrice = ?, saleDate = ?, ticketStatus = ?, contractId = ? WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, ticket.getTransportType().toString());
+            ps.setObject(1, ticket.getTransportType().toString(), java.sql.Types.OTHER);
             ps.setFloat(2, ticket.getPurchasePrice());
             ps.setFloat(3, ticket.getSalePrice());
             ps.setDate(4, new java.sql.Date(ticket.getSaleDate().getTime()));
-            ps.setString(5, ticket.getTicketStatus().toString());
+            ps.setObject(5, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(6, ticket.getContract().getId());
             ps.setObject(7, ticket.getId());
 
