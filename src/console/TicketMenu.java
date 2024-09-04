@@ -19,7 +19,7 @@ public class TicketMenu {
     private TicketDao ticketDao;
     private Scanner scanner;
     private ContractDao contractDao;
-
+    int choice;
 
     public TicketMenu(Connection connection) {
         ticketDao = new TicketDao(connection);
@@ -28,35 +28,41 @@ public class TicketMenu {
     }
 
     public void displayTicketMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("======= Ticket Menu ========");
+            System.out.println("1. Add a new ticket");
+            System.out.println("2. View all tickets");
+            System.out.println("3. Update an existing ticket");
+            System.out.println("4. Delete a ticket");
+            System.out.println("0. Back to main menu");
+            System.out.println("Choose your choice");
 
-        System.out.println("======= Ticket Menu ========");
-        System.out.println("1. Add a new ticket");
-        System.out.println("2. View all tickets");
-        System.out.println("3. Update an existing ticket");
-        System.out.println("4. Delete a ticket");
-        System.out.println("0. Back to main menu");
-        System.out.println("Choose your choice");
-
-        int choice = Integer.parseInt(scanner.nextLine());
-
-        switch (choice) {
-            case 1:
-                createTicket();
-                break;
-            case 2:
-                displayAllTickets();
-                break;
-            case 3:
-                updateTicket();
-                break;
-            case 4:
-                deleteTicket();
-                break;
-            case 0:
-                System.out.println("Exiting...!");
-                break;
-            default:
-                System.out.println("Invalid choice!");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+            switch (choice) {
+                case 1:
+                    createTicket();
+                    break;
+                case 2:
+                    displayAllTickets();
+                    break;
+                case 3:
+                    updateTicket();
+                    break;
+                case 4:
+                    deleteTicket();
+                    break;
+                case 0:
+                    System.out.println("Exiting...!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
         }
     }
 

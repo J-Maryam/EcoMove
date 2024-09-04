@@ -18,6 +18,7 @@ public class ContractMenu {
 
     private ContractDao contractDao;
     private Scanner scanner;
+    int choice;
 
     public ContractMenu(Connection connection) {
         this.contractDao = new ContractDao(connection);
@@ -26,34 +27,41 @@ public class ContractMenu {
 
     public void displayContractMenu() {
 
-        System.out.println("======= Contract Menu ========");
-        System.out.println("1. Add a new contract");
-        System.out.println("2. View all contracts");
-        System.out.println("3. Update an existing contract");
-        System.out.println("4. Delete a contract");
-        System.out.println("0. Back to main menu");
-        System.out.println("Choose your choice");
+        boolean running = true;
+        while (running) {
+            System.out.println("======= Contract Menu ========");
+            System.out.println("1. Add a new contract");
+            System.out.println("2. View all contracts");
+            System.out.println("3. Update an existing contract");
+            System.out.println("4. Delete a contract");
+            System.out.println("0. Back to main menu");
+            System.out.println("Choose your choice");
 
-        int choice = Integer.parseInt(scanner.nextLine());
-
-        switch (choice) {
-            case 1:
-                createContract();
-                break;
-            case 2:
-                displayAllContracts();
-                break;
-            case 3:
-                updateContract();
-                break;
-            case 4:
-                deleteContract();
-                break;
-            case 0:
-                System.out.println("Exiting...!");
-                break;
-            default:
-                System.out.println("Invalid choice!");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+            switch (choice) {
+                case 1:
+                    createContract();
+                    break;
+                case 2:
+                    displayAllContracts();
+                    break;
+                case 3:
+                    updateContract();
+                    break;
+                case 4:
+                    deleteContract();
+                    break;
+                case 0:
+                    System.out.println("Exiting...!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
         }
     }
 

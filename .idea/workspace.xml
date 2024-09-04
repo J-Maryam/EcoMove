@@ -7,8 +7,12 @@
     <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/PromoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/PromoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/entities/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/console/ContractMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/ContractMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/console/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/console/PartnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/PartnerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/console/PromoMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/PromoMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/console/TicketMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/TicketMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +72,7 @@
       <recent name="C:\Users\marya\IdeaProjects\EcoMove" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="console" />
       <recent name="" />
     </key>
   </component>
@@ -101,7 +106,11 @@
       <workItem from="1724929308916" duration="22370000" />
       <workItem from="1725024986417" duration="7055000" />
       <workItem from="1725106233570" duration="20033000" />
-      <workItem from="1725266779302" duration="20786000" />
+      <workItem from="1725266779302" duration="30898000" />
+      <workItem from="1725352383019" duration="1094000" />
+      <workItem from="1725354142176" duration="7888000" />
+      <workItem from="1725368784761" duration="20321000" />
+      <workItem from="1725439889066" duration="10917000" />
     </task>
     <servers />
   </component>
@@ -113,13 +122,46 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dao/PartnerDao.java</url>
-          <line>72</line>
+          <line>65</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>83</line>
+          <line>27</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/PromoDao.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/PartnerDao.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/ContractDao.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/dao/PromoDao.java</url>
+          <line>18</line>
+          <properties class="dao.PromoDao" method="addPromotion">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/console/MainMenu.java</url>
+          <line>15</line>
+          <properties class="console.MainMenu">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

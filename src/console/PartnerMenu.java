@@ -14,6 +14,8 @@ public class PartnerMenu {
 
     private PartnerDao partnerDao;
     private Scanner scanner;
+    int choice;
+
 
     public PartnerMenu(Connection connection) {
         this.partnerDao = new PartnerDao(connection);
@@ -21,34 +23,42 @@ public class PartnerMenu {
     }
 
     public void displayPartnerMenu() {
-        System.out.println("======= Partner Menu ========");
-        System.out.println("1. Add a new Partner");
-        System.out.println("2. View all Partners");
-        System.out.println("3. Update an existing Partner");
-        System.out.println("4. Delete a Partner");
-        System.out.println("0. Back to main menu");
-        System.out.println("Choose your choice");
 
-        int choice = Integer.parseInt(scanner.nextLine());
+        boolean running = true;
+        while (running) {
+            System.out.println("======= Partner Menu ========");
+            System.out.println("1. Add a new Partner");
+            System.out.println("2. View all Partners");
+            System.out.println("3. Update an existing Partner");
+            System.out.println("4. Delete a Partner");
+            System.out.println("0. Back to main menu");
+            System.out.println("Choose your choice");
 
-        switch (choice) {
-            case 1:
-                createPartner();
-                break;
-            case 2:
-                viewAllPartner();
-                break;
-            case 3:
-                updatePartner();
-                break;
-            case 4:
-                deletePartner();
-                break;
-            case 0:
-                System.out.println("Exiting...!");
-                break;
-            default:
-                System.out.println("Invalid choice!");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+            switch (choice) {
+                case 1:
+                    createPartner();
+                    break;
+                case 2:
+                    viewAllPartner();
+                    break;
+                case 3:
+                    updatePartner();
+                    break;
+                case 4:
+                    deletePartner();
+                    break;
+                case 0:
+                    System.out.println("Exiting...!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
         }
     }
 

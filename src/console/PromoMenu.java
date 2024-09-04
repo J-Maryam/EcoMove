@@ -19,6 +19,7 @@ public class PromoMenu {
 
     private PromoDao promoDao;
     private Scanner scanner;
+    int choice;
 
     public PromoMenu(Connection connection) {
         this.promoDao = new PromoDao(connection);
@@ -27,34 +28,41 @@ public class PromoMenu {
 
     public void displayPromoMenu() {
 
-        System.out.println("======= Promotion Menu ========");
-        System.out.println("1. Add a new Promotion");
-        System.out.println("2. View all Promotions");
-        System.out.println("3. Update an existing Promotion");
-        System.out.println("4. Delete a Promotion");
-        System.out.println("0. Back to main menu");
-        System.out.println("Choose your choice");
+        boolean running = true;
+        while (running) {
+            System.out.println("======= Promotion Menu ========");
+            System.out.println("1. Add a new Promotion");
+            System.out.println("2. View all Promotions");
+            System.out.println("3. Update an existing Promotion");
+            System.out.println("4. Delete a Promotion");
+            System.out.println("0. Back to main menu");
+            System.out.println("Choose your choice");
 
-        int choice = Integer.parseInt(scanner.nextLine());
-
-        switch (choice) {
-            case 1:
-                createPromotion();
-                break;
-            case 2:
-                viewAllPromotions();
-                break;
-            case 3:
-                updatePromotion();
-                break;
-            case 4:
-                deletePromotion();
-                break;
-            case 0:
-                System.out.println("Exiting...!");
-                break;
-            default:
-                System.out.println("Invalid choice!");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+            switch (choice) {
+                case 1:
+                    createPromotion();
+                    break;
+                case 2:
+                    viewAllPromotions();
+                    break;
+                case 3:
+                    updatePromotion();
+                    break;
+                case 4:
+                    deletePromotion();
+                    break;
+                case 0:
+                    System.out.println("Exiting...!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
         }
     }
 
