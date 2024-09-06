@@ -7,6 +7,7 @@ import models.enums.ContractStatus;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
 import models.enums.TransportType;
+import services.ContractService;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,13 +17,13 @@ import java.util.UUID;
 
 public class ContractMenu {
 
-    private ContractDao contractDao;
-    private Scanner scanner;
+    private ContractService contractService;
+    private Scanner scanner = new Scanner(System.in);
     int choice;
+    boolean validDates = false;
 
-    public ContractMenu(Connection connection) {
-        this.contractDao = new ContractDao(connection);
-        this.scanner = new Scanner(System.in);
+    public ContractMenu(ContractService contractService) {
+        this.contractService = contractService;
     }
 
     public void displayContractMenu() {
@@ -66,14 +67,29 @@ public class ContractMenu {
     }
 
     public void createContract() {
+        java.util.Date startDate = null;
+        java.util.Date endDate = null;
 
-        System.out.print("Enter start date (yyyy-mm-dd): ");
-        String startDateStr = scanner.nextLine();
-        java.sql.Date startDate = java.sql.Date.valueOf(startDateStr);
+        while (!validDates) {
+            try {
+                System.out.println("Enter start date (yyyy-MM-dd): ");
+                String startDateInput = scanner.nextLine();
+                startDate = java.sql.Date.valueOf(startDateInput);
 
-        System.out.print("Enter end date (yyyy-mm-dd): ");
-        String endDateStr = scanner.nextLine();
-        java.sql.Date endDate = java.sql.Date.valueOf(endDateStr);
+                System.out.println("Enter end date (yyyy-MM-dd): ");
+                String endDateInput = scanner.nextLine();
+                endDate = java.sql.Date.valueOf(endDateInput);
+
+                if (startDate.after(endDate)) {
+                    System.out.println("La date de début ne peut pas être après la date de fin. Veuillez réessayer.");
+                } else {
+                    validDates = true;
+                }
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erreur de format de date. Veuillez entrer une date valide au format yyyy-MM-dd.");
+            }
+        }
 
         System.out.print("Enter special rate: ");
         float specialRate = Float.parseFloat(scanner.nextLine());
@@ -101,7 +117,7 @@ public class ContractMenu {
                 partnerId
         );
 
-        boolean isAdded = contractDao.addContract(newContract);
+        boolean isAdded = contractService.addContract(newContract);
         if (isAdded) {
             System.out.println("Contract added successfully.");
         } else {
@@ -110,7 +126,7 @@ public class ContractMenu {
     }
 
     public void displayAllContracts() {
-        List<Contract> contracts = contractDao.getAllContracts();
+        List<Contract> contracts = contractService.getAllContracts();
 
         if (contracts.isEmpty()) {
             System.out.println("No contracts found.");
@@ -131,7 +147,6 @@ public class ContractMenu {
 
     public void updateContract() {
 
-        displayAllContracts();
         System.out.println("Enter the ID of the contract to modify (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
@@ -171,7 +186,7 @@ public class ContractMenu {
                 partnerId
         );
 
-        boolean isUpdated = contractDao.updateContract(updatedContract);
+        boolean isUpdated = contractService.updateContract(updatedContract);
         if (isUpdated) {
             System.out.println("Contract updated successfully.");
             displayAllContracts();
@@ -182,13 +197,10 @@ public class ContractMenu {
     }
 
     public void deleteContract() {
-
-        displayAllContracts();
-
         System.out.println("Enter the ID of the contract to delete (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        boolean isDeleted = contractDao.deleteContract(contractId);
+        boolean isDeleted = contractService.deleteContract(contractId);
 
         if (isDeleted) {
             System.out.println("Contract deleted successfully.");

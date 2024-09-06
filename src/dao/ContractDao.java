@@ -1,5 +1,6 @@
 package dao;
 
+import config.DbFunctions;
 import models.entities.Contract;
 import models.enums.ContractStatus;
 
@@ -9,10 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class ContractDao {
+
     private Connection connection;
 
-    public ContractDao(Connection connection) {
-        this.connection = connection;
+    public ContractDao() {
+        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
     }
 
     public boolean addContract(Contract contract) {
@@ -66,8 +68,7 @@ public class ContractDao {
         return contracts;
     }
 
-    public boolean updateContract(Contract contract)
-    {
+    public boolean updateContract(Contract contract) {
         String sql = "update contract set startDate = ?, endDate = ?, specialRate = ?, agreementConditions = ?, renewable = ?, contractStatus = ?, partnerId = ? where id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
@@ -90,8 +91,7 @@ public class ContractDao {
         return false;
     }
 
-    public boolean deleteContract(UUID id)
-    {
+    public boolean deleteContract(UUID id) {
         String sql = "DELETE FROM contract WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
