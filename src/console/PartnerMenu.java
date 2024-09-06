@@ -4,6 +4,7 @@ import dao.PartnerDao;
 import models.entities.Partner;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
+import services.PartnerService;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -12,14 +13,13 @@ import java.util.UUID;
 
 public class PartnerMenu {
 
-    private PartnerDao partnerDao;
-    private Scanner scanner;
+    private PartnerService partnerService;
+    private Scanner scanner = new Scanner(System.in);
     int choice;
 
 
-    public PartnerMenu(Connection connection) {
-        this.partnerDao = new PartnerDao(connection);
-        this.scanner = new Scanner(System.in);
+    public PartnerMenu(PartnerService partnerService) {
+        this.partnerService = partnerService;
     }
 
     public void displayPartnerMenu() {
@@ -93,7 +93,7 @@ public class PartnerMenu {
                 LocalDate.now()
         );
 
-        boolean isAdded = partnerDao.createPartner(partner);
+        boolean isAdded = partnerService.addPartner(partner);
         if (isAdded) {
             System.out.println("Partner added successfully");
         }else {
@@ -104,7 +104,7 @@ public class PartnerMenu {
 
     public void viewAllPartner(){
 
-        boolean displayed =  partnerDao.viewAllPartners();
+        boolean displayed =  partnerService.viewAllPartners();
         if (displayed){
             System.out.println("Partner list retrieved successfully");
         }else {
@@ -147,15 +147,12 @@ public class PartnerMenu {
                 LocalDate.now()
         );
 
-        int updated = partnerDao.updatePartner(updatedPartner);
+        int updated = partnerService.updatePartner(updatedPartner);
         if (updated > 0){
             System.out.println("Partner updated successfully");
         }else {
             System.out.println("Partner not updated");
         }
-
-        partnerDao.viewAllPartners();
-
     }
 
     public void deletePartner(){
@@ -163,7 +160,7 @@ public class PartnerMenu {
         System.out.println("Enter the ID of the partner to delete: ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
 
-        int deleted = partnerDao.deletePartner(partnerId);
+        int deleted = partnerService.deletePartner(partnerId);
 
         if (deleted > 0){
             System.out.println("Partner deleted successfully");

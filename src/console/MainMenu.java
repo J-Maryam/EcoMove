@@ -1,5 +1,11 @@
 package console;
 
+import dao.ContractDao;
+import dao.PartnerDao;
+import models.entities.Contract;
+import services.ContractService;
+import services.PartnerService;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
@@ -8,9 +14,14 @@ public class MainMenu {
     private Scanner scanner;
     int choice;
 
+    ContractDao contractDao = new ContractDao();
+    ContractService contractService = new ContractService(contractDao);
 
-    public MainMenu(Connection connection) {
-        this.connection = connection;
+    PartnerDao partnerDao = new PartnerDao();
+    PartnerService partnerService = new PartnerService(partnerDao);
+
+
+    public MainMenu() {
         scanner = new Scanner(System.in);
     }
 
@@ -33,7 +44,7 @@ public class MainMenu {
             }
             switch (choice) {
                 case 1:
-                    PartnerMenu partnerMenu = new PartnerMenu(connection);
+                    PartnerMenu partnerMenu = new PartnerMenu(partnerService);
                     partnerMenu.displayPartnerMenu();
                     break;
                 case 2:
@@ -45,7 +56,7 @@ public class MainMenu {
                     ticketMenu.displayTicketMenu();
                     break;
                 case 4:
-                    ContractMenu contractMenu = new ContractMenu(connection);
+                    ContractMenu contractMenu = new ContractMenu(contractService);
                     contractMenu.displayContractMenu();
                     break;
                 case 0:

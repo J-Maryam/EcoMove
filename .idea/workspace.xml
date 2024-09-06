@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/ContractMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/ContractMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/PartnerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/PartnerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/PromoMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/PromoMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/TicketMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/TicketMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +103,9 @@
       <workItem from="1725352383019" duration="1094000" />
       <workItem from="1725354142176" duration="7888000" />
       <workItem from="1725368784761" duration="20321000" />
-      <workItem from="1725439889066" duration="10917000" />
+      <workItem from="1725439889066" duration="12454000" />
+      <workItem from="1725483440660" duration="2189000" />
+      <workItem from="1725526651490" duration="101000" />
     </task>
     <servers />
   </component>
@@ -127,7 +122,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>27</line>
+          <line>25</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

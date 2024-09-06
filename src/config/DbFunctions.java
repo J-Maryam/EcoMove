@@ -19,7 +19,6 @@ public class DbFunctions {
     }
 
     public Connection connectToDb( String dbName, String user, String pass) {
-        Connection con = null;
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + dbName, user, pass);

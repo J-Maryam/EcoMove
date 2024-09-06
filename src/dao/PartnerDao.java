@@ -1,5 +1,6 @@
 package dao;
 
+import config.DbFunctions;
 import models.entities.Partner;
 
 import java.sql.*;
@@ -9,8 +10,8 @@ public class PartnerDao {
 
     private Connection connection;
 
-    public PartnerDao(Connection connection) {
-        this.connection = connection;
+    public PartnerDao() {
+        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
     }
 
     public boolean createPartner(Partner partner)

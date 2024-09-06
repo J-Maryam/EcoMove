@@ -24,7 +24,7 @@ public class Main {
         DbFunctions db = DbFunctions.getInstance();
         Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
 
-        MainMenu mainMenu = new MainMenu(connection);
+        MainMenu mainMenu = new MainMenu();
         mainMenu.displayMainMenu();
     }
 }
