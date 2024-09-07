@@ -1,5 +1,6 @@
 import config.DbFunctions;
 import console.*;
+import dao.ContractDao;
 import dao.PartnerDao;
 import dao.PromoDao;
 import dao.TicketDao;
@@ -8,6 +9,10 @@ import models.entities.Promotion;
 import models.entities.Ticket;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
+import services.ContractService;
+import services.PartnerService;
+import services.PromoService;
+import services.TicketService;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -24,7 +29,19 @@ public class Main {
         DbFunctions db = DbFunctions.getInstance();
         Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
 
-        MainMenu mainMenu = new MainMenu();
+        ContractDao contractDao = new ContractDao(connection);
+        ContractService contractService = new ContractService(contractDao);
+
+        PartnerDao partnerDao = new PartnerDao(connection);
+        PartnerService partnerService = new PartnerService(partnerDao);
+
+        TicketDao ticketDao = new TicketDao(connection);
+        TicketService ticketService = new TicketService(ticketDao);
+
+        PromoDao promoDao = new PromoDao(connection);
+        PromoService promoService = new PromoService(promoDao);
+
+        MainMenu mainMenu = new MainMenu(contractService, partnerService, ticketService, promoService);
         mainMenu.displayMainMenu();
     }
 }

@@ -16,24 +16,20 @@ import java.util.Scanner;
 
 public class MainMenu {
     private Connection connection;
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);;
     int choice;
 
-    ContractDao contractDao = new ContractDao();
-    ContractService contractService = new ContractService(contractDao);
-
-    PartnerDao partnerDao = new PartnerDao();
-    PartnerService partnerService = new PartnerService(partnerDao);
-
-    TicketDao ticketDao = new TicketDao();
-    TicketService ticketService = new TicketService(ticketDao);
-
-    PromoDao promoDao = new PromoDao();
-    PromoService promoService = new PromoService(promoDao);
+    ContractService contractService;
+    PartnerService partnerService;
+    TicketService ticketService;
+    PromoService promoService;
 
 
-    public MainMenu() {
-        scanner = new Scanner(System.in);
+    public MainMenu(ContractService contractService, PartnerService partnerService, TicketService ticketService, PromoService promoService) {
+        this.contractService = contractService;
+        this.partnerService = partnerService;
+        this.ticketService = ticketService;
+        this.promoService = promoService;
     }
 
     public void displayMainMenu() {

@@ -13,8 +13,12 @@ public class ContractDao {
 
     private Connection connection;
 
-    public ContractDao() {
-        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
+//    public ContractDao() {
+//        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
+//    }
+
+    public ContractDao(Connection connection) {
+        this.connection = connection;
     }
 
     public boolean addContract(Contract contract) {

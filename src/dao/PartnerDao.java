@@ -10,8 +10,8 @@ public class PartnerDao {
 
     private Connection connection;
 
-    public PartnerDao() {
-        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
+    public PartnerDao(Connection connection) {
+        this.connection = connection;
     }
 
     public boolean createPartner(Partner partner)

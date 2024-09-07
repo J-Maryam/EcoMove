@@ -13,8 +13,8 @@ public class PromoDao {
 
     private Connection connection;
 
-    public PromoDao() {
-        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
+    public PromoDao(Connection connection) {
+        this.connection = connection;
     }
 
     public boolean addPromotion(Promotion promotion) {
