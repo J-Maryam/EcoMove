@@ -2,9 +2,14 @@ package console;
 
 import dao.ContractDao;
 import dao.PartnerDao;
+import dao.PromoDao;
+import dao.TicketDao;
 import models.entities.Contract;
+import models.entities.Ticket;
 import services.ContractService;
 import services.PartnerService;
+import services.PromoService;
+import services.TicketService;
 
 import java.sql.Connection;
 import java.util.Scanner;
@@ -19,6 +24,12 @@ public class MainMenu {
 
     PartnerDao partnerDao = new PartnerDao();
     PartnerService partnerService = new PartnerService(partnerDao);
+
+    TicketDao ticketDao = new TicketDao();
+    TicketService ticketService = new TicketService(ticketDao);
+
+    PromoDao promoDao = new PromoDao();
+    PromoService promoService = new PromoService(promoDao);
 
 
     public MainMenu() {
@@ -48,11 +59,11 @@ public class MainMenu {
                     partnerMenu.displayPartnerMenu();
                     break;
                 case 2:
-                    PromoMenu promoMenu = new PromoMenu(connection);
+                    PromoMenu promoMenu = new PromoMenu(promoService);
                     promoMenu.displayPromoMenu();
                     break;
                 case 3:
-                    TicketMenu ticketMenu = new TicketMenu(connection);
+                    TicketMenu ticketMenu = new TicketMenu(ticketService);
                     ticketMenu.displayTicketMenu();
                     break;
                 case 4:
