@@ -139,7 +139,7 @@ public class ContractDao {
             e.printStackTrace();
         }
 
-        return null;  // Retourne null si le contrat n'est pas trouvé
+        return null;
     }
 
 }

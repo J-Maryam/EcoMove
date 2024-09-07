@@ -32,4 +32,8 @@ public class ContractService {
     public boolean deleteContract(UUID id) {
         return contractDao.deleteContract(id);
     }
+
+    public Contract getContractById(UUID id) {
+        return contractDao.getContractById(id);
+    }
 }
