@@ -8,6 +8,7 @@ import models.enums.DiscountType;
 import models.enums.OfferStatus;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
+import services.PromoService;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -17,13 +18,12 @@ import java.util.UUID;
 
 public class PromoMenu {
 
-    private PromoDao promoDao;
-    private Scanner scanner;
+    private PromoService promoService;
+    private Scanner scanner = new Scanner(System.in);
     int choice;
 
-    public PromoMenu(Connection connection) {
-        this.promoDao = new PromoDao(connection);
-        this.scanner = new Scanner(System.in);
+    public PromoMenu(PromoService promoService) {
+        this.promoService = promoService;
     }
 
     public void displayPromoMenu() {
@@ -106,7 +106,7 @@ public class PromoMenu {
                 contractId
         );
 
-        boolean isAdded = promoDao.addPromotion(promotion);
+        boolean isAdded = promoService.addPromo(promotion);
         if (isAdded) {
             System.out.println("Promotion added successfully.");
         } else {
@@ -117,7 +117,7 @@ public class PromoMenu {
 
     public void viewAllPromotions(){
 
-        boolean displayed =  promoDao.displayPromotions();
+        boolean displayed =  promoService.viewAllPromos();
         if (displayed) {
             System.out.println("Promotions displayed successfully.");
         }else {
@@ -171,13 +171,12 @@ public class PromoMenu {
                 newContractId
         );
 
-        boolean updated = promoDao.updatePromo(updatedPromo);
+        boolean updated = promoService.updatePromo(updatedPromo);
         if (updated) {
             System.out.println("Promotion updated successfully.");
         }else {
             System.out.println("Promotion not updated.");
         }
-        promoDao.displayPromotions();
     }
 
     public void deletePromotion(){
@@ -185,7 +184,7 @@ public class PromoMenu {
         System.out.println("Enter the ID of the promotion to delete: ");
         UUID promoId = UUID.fromString(scanner.nextLine());
 
-        boolean deleted =  promoDao.deletePromo(promoId);
+        boolean deleted =  promoService.deletePromo(promoId);
         if (deleted) {
             System.out.println("Promotion deleted successfully.");
         }else {

@@ -1,6 +1,7 @@
 package dao;
 
 
+import config.DbFunctions;
 import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
@@ -12,8 +13,8 @@ public class PromoDao {
 
     private Connection connection;
 
-    public PromoDao(Connection connection) {
-        this.connection = connection;
+    public PromoDao() {
+        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
     }
 
     public boolean addPromotion(Promotion promotion) {
@@ -35,20 +36,13 @@ public class PromoDao {
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
 
-//            if (rowsAffected > 0) {
-//                System.out.println("Promotion added successfully");
-//            }else {
-//                System.out.println("Promotion could not be added");
-//            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    public boolean displayPromotions()
-    {
+    public boolean displayPromotions() {
         String sql = "SELECT * FROM promo";
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -74,8 +68,7 @@ public class PromoDao {
         return false;
     }
 
-    public boolean updatePromo(Promotion promotion)
-    {
+    public boolean updatePromo(Promotion promotion) {
         String sql = "UPDATE promo SET offerName = ?, description = ?, startDate = ?, endDate = ?, discountType = ?, conditions = ?, offerStatus = ?, contractId = ? WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
@@ -99,8 +92,7 @@ public class PromoDao {
         return false;
     }
 
-    public boolean deletePromo(UUID id)
-    {
+    public boolean deletePromo(UUID id) {
         String sql = "DELETE FROM promo WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
@@ -114,6 +106,5 @@ public class PromoDao {
         }
         return false;
     }
-
 
 }
