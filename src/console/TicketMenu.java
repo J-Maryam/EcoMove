@@ -7,6 +7,8 @@ import models.entities.Contract;
 import models.entities.Ticket;
 import models.enums.TicketStatus;
 import models.enums.TransportType;
+import services.ContractService;
+import services.TicketService;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,15 +18,14 @@ import java.util.UUID;
 
 public class TicketMenu {
 
-    private TicketDao ticketDao;
-    private Scanner scanner;
-    private ContractDao contractDao;
+    private Scanner scanner = new Scanner(System.in);
     int choice;
 
-    public TicketMenu(Connection connection) {
-        ticketDao = new TicketDao(connection);
-        scanner = new Scanner(System.in);
-        contractDao = new ContractDao(connection);
+    private ContractService contractService;
+    private TicketService ticketService;
+
+    public TicketMenu(TicketService ticketService) {
+        this.ticketService = ticketService;
     }
 
     public void displayTicketMenu() {
@@ -86,7 +87,7 @@ public class TicketMenu {
         System.out.println("Enter Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        Contract contract = contractDao.getContractById(contractId);
+        Contract contract = contractService.getContractById(contractId);
 
         if (contract == null) {
             System.out.println("Invalid Contract ID. Ticket creation failed.");
@@ -95,7 +96,7 @@ public class TicketMenu {
 
         Ticket ticket = new Ticket(UUID.randomUUID(), transportType, purchasePrice, salePrice, saleDate, ticketStatus, contract);
 
-        int result = ticketDao.addTicket(ticket);
+        int result = ticketService.addTicket(ticket);
 
         if (result > 0) {
             System.out.println("Ticket added successfully!");
@@ -105,7 +106,7 @@ public class TicketMenu {
     }
 
     private void displayAllTickets() {
-        List<Ticket> tickets = ticketDao.getAllTickets();
+        List<Ticket> tickets = ticketService.getAllTickets();
 
         if (tickets.isEmpty()) {
             System.out.println("No tickets found.");
@@ -146,11 +147,11 @@ public class TicketMenu {
         System.out.println("Enter new Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        Contract contract = contractDao.getContractById(contractId);
+        Contract contract = contractService.getContractById(contractId);
 
 
         Ticket ticket = new Ticket(id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contract);
-        ticketDao.updateTicket(ticket);
+        ticketService.updateTicket(ticket);
 
         System.out.println("Ticket updated successfully!");
     }
@@ -159,7 +160,7 @@ public class TicketMenu {
         System.out.println("Enter Ticket ID to delete: ");
         UUID id = UUID.fromString(scanner.nextLine());
 
-        ticketDao.deleteTicket(id);
+        ticketService.deleteTicket(id);
 
         System.out.println("Ticket deleted successfully!");
     }

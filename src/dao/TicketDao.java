@@ -1,5 +1,6 @@
 package dao;
 
+import config.DbFunctions;
 import models.entities.Contract;
 import models.entities.Ticket;
 import models.enums.ContractStatus;
@@ -15,8 +16,8 @@ public class TicketDao {
 
     private Connection connection;
 
-    public TicketDao(Connection connection) {
-        this.connection = connection;
+    public TicketDao() {
+        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
     }
 
     public int addTicket(Ticket ticket) {
