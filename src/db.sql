@@ -51,8 +51,41 @@ create table ticket
     transportType transportType,
     purchasePrice decimal,
     salePrice decimal,
-    saleDate timestamp,
+    saleDate date,
     ticketStatus ticketStatus,
     contractId UUID,
-    foreign key (contractId) references contract(id)
+    foreign key (contractId) references contract(id),
+    departureCity varchar(200),
+    destinationCity varchar(200),
+    departureDate date
+)
+
+create table clients
+(
+    id int primary key,
+    firstName varchar(50),
+    lastName varchar(50),
+    email varchar(200) unique,
+    phone varchar(20)
+)
+
+create table reservations
+(
+    id int primary key,
+    clientId int,
+    foreign key (clientId) references clients(id),
+    ticketId int,
+    foreign key (ticketId) references ticket(id),
+    date date,
+    price float,
+    status boolean
+)
+
+create table reservationTicket
+(
+    id int primary key,
+    reservationId int,
+    foreign key (reservationId) references reservations(id),
+    ticketId int,
+    foreign key (ticketId) references ticket(id)
 )
