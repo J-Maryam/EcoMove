@@ -74,11 +74,9 @@ create table reservations
     id int primary key,
     clientId int,
     foreign key (clientId) references clients(id),
-    ticketId int,
-    foreign key (ticketId) references ticket(id),
     date date,
     price float,
-    status boolean
+    canceled boolean
 )
 
 create table reservationTicket
