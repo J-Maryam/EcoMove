@@ -1,5 +1,6 @@
 package dao.Implementations;
 
+import dao.Interfaces.IContractDao;
 import models.entities.Contract;
 import models.enums.ContractStatus;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ContractDao {
+public class ContractDao implements IContractDao {
 
     private Connection connection;
 
@@ -20,6 +21,7 @@ public class ContractDao {
         this.connection = connection;
     }
 
+    @Override
     public boolean addContract(Contract contract) {
         String sql = "insert into contract (id, startDate, endDate, specialRate, agreementConditions, renewable, contractStatus, partnerId) values(?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -43,6 +45,7 @@ public class ContractDao {
         return false;
     }
 
+    @Override
     public List<Contract> getAllContracts() {
         String sql = "SELECT * FROM contract";
         List<Contract> contracts = new ArrayList<>();
@@ -71,6 +74,7 @@ public class ContractDao {
         return contracts;
     }
 
+    @Override
     public boolean updateContract(Contract contract) {
         String sql = "update contract set startDate = ?, endDate = ?, specialRate = ?, agreementConditions = ?, renewable = ?, contractStatus = ?, partnerId = ? where id = ?";
 
@@ -94,6 +98,7 @@ public class ContractDao {
         return false;
     }
 
+    @Override
     public boolean deleteContract(UUID id) {
         String sql = "DELETE FROM contract WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
@@ -109,6 +114,7 @@ public class ContractDao {
         return false;
     }
 
+    @Override
     public Contract getContractById(UUID id) {
         String sql = "SELECT * FROM contract WHERE id = ?";
 
