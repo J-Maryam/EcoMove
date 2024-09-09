@@ -1,11 +1,5 @@
 package console;
 
-import dao.ContractDao;
-import dao.PartnerDao;
-import dao.PromoDao;
-import dao.TicketDao;
-import models.entities.Contract;
-import models.entities.Ticket;
 import services.ContractService;
 import services.PartnerService;
 import services.PromoService;

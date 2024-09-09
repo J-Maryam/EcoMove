@@ -1,6 +1,6 @@
 package services;
 
-import dao.ContractDao;
+import dao.Implementations.ContractDao;
 import models.entities.Contract;
 
 import java.util.List;

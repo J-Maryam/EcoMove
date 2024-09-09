@@ -1,24 +1,15 @@
 import config.DbFunctions;
 import console.*;
-import dao.ContractDao;
-import dao.PartnerDao;
-import dao.PromoDao;
-import dao.TicketDao;
-import models.entities.Partner;
-import models.entities.Promotion;
-import models.entities.Ticket;
-import models.enums.PartnerStatus;
-import models.enums.TransportType;
+import dao.Implementations.ContractDao;
+import dao.Implementations.PartnerDao;
+import dao.Implementations.PromoDao;
+import dao.Implementations.TicketDao;
 import services.ContractService;
 import services.PartnerService;
 import services.PromoService;
 import services.TicketService;
 
 import java.sql.Connection;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.UUID;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

@@ -1,8 +1,7 @@
 package services;
 
-import dao.ClientDao;
+import dao.Implementations.ClientDao;
 import models.entities.Client;
-import models.entities.Partner;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

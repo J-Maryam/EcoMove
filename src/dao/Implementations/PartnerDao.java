@@ -1,6 +1,5 @@
-package dao;
+package dao.Implementations;
 
-import config.DbFunctions;
 import models.entities.Partner;
 
 import java.sql.*;

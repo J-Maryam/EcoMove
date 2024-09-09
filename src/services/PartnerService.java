@@ -1,6 +1,6 @@
 package services;
 
-import dao.PartnerDao;
+import dao.Implementations.PartnerDao;
 import models.entities.Partner;
 
 import java.util.UUID;

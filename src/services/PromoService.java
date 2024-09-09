@@ -1,6 +1,6 @@
 package services;
 
-import dao.PromoDao;
+import dao.Implementations.PromoDao;
 import models.entities.Promotion;
 
 import java.util.List;

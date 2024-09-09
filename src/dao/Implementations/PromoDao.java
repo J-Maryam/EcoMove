@@ -1,7 +1,6 @@
-package dao;
+package dao.Implementations;
 
 
-import config.DbFunctions;
 import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;

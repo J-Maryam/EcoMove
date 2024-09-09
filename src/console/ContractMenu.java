@@ -1,15 +1,9 @@
 package console;
 
-import dao.ContractDao;
 import models.entities.Contract;
-import models.entities.Promotion;
 import models.enums.ContractStatus;
-import models.enums.DiscountType;
-import models.enums.OfferStatus;
-import models.enums.TransportType;
 import services.ContractService;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;

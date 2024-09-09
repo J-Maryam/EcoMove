@@ -1,12 +1,13 @@
-package dao;
+package dao.Implementations;
 
+import dao.Interfaces.IClientDao;
 import models.entities.Client;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ClientDao {
+public class ClientDao implements IClientDao {
 
     private Connection connection;
 
@@ -14,6 +15,7 @@ public class ClientDao {
         this.connection = connection;
     }
 
+    @Override
     public int addClient(Client client) {
         String sql = "insert into clients (id, firstName, lastName, email, phone) values (?, ?, ?, ?, ?)";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -30,5 +32,30 @@ public class ClientDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public void viewAllClients() {
+
+    }
+
+    @Override
+    public int updateProfile(Client client) {
+        return 0;
+    }
+
+    @Override
+    public int deleteClient(int id) {
+        return 0;
+    }
+
+    @Override
+    public void searchClient(Client client) {
+
+    }
+
+    @Override
+    public void seConnect(Client client) {
+
     }
 }

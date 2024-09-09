@@ -1,17 +1,10 @@
 package console;
 
-import dao.PartnerDao;
-import dao.PromoDao;
-import models.entities.Partner;
 import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
-import models.enums.PartnerStatus;
-import models.enums.TransportType;
 import services.PromoService;
 
-import java.sql.Connection;
-import java.time.LocalDate;
 import java.util.*;
 
 public class PromoMenu {

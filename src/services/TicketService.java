@@ -1,6 +1,6 @@
 package services;
 
-import dao.TicketDao;
+import dao.Implementations.TicketDao;
 import models.entities.Ticket;
 
 import java.util.List;

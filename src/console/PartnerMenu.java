@@ -1,12 +1,10 @@
 package console;
 
-import dao.PartnerDao;
 import models.entities.Partner;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
 import services.PartnerService;
 
-import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.UUID;

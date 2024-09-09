@@ -1,8 +1,5 @@
 package console;
 
-import dao.ContractDao;
-import dao.PromoDao;
-import dao.TicketDao;
 import models.entities.Contract;
 import models.entities.Ticket;
 import models.enums.TicketStatus;
@@ -10,7 +7,6 @@ import models.enums.TransportType;
 import services.ContractService;
 import services.TicketService;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
