@@ -1,4 +1,4 @@
-package services;
+package services.Implementations;
 
 import dao.Implementations.ContractDao;
 import models.entities.Contract;

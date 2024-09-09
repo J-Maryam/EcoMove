@@ -1,7 +1,7 @@
 package console;
 
 import models.entities.Client;
-import services.ClientService;
+import services.Implementations.ClientService;
 
 import java.util.Scanner;
 

@@ -3,7 +3,7 @@ package console;
 import models.entities.Partner;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
-import services.PartnerService;
+import services.Implementations.PartnerService;
 
 import java.time.LocalDate;
 import java.util.Scanner;

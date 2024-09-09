@@ -1,4 +1,4 @@
-package services;
+package services.Implementations;
 
 import dao.Implementations.PromoDao;
 import models.entities.Promotion;

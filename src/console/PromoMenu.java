@@ -3,7 +3,7 @@ package console;
 import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
-import services.PromoService;
+import services.Implementations.PromoService;
 
 import java.util.*;
 

@@ -4,10 +4,10 @@ import dao.Implementations.ContractDao;
 import dao.Implementations.PartnerDao;
 import dao.Implementations.PromoDao;
 import dao.Implementations.TicketDao;
-import services.ContractService;
-import services.PartnerService;
-import services.PromoService;
-import services.TicketService;
+import services.Implementations.ContractService;
+import services.Implementations.PartnerService;
+import services.Implementations.PromoService;
+import services.Implementations.TicketService;
 
 import java.sql.Connection;
 

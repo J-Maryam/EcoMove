@@ -2,7 +2,7 @@ package console;
 
 import models.entities.Contract;
 import models.enums.ContractStatus;
-import services.ContractService;
+import services.Implementations.ContractService;
 
 import java.sql.Date;
 import java.util.List;

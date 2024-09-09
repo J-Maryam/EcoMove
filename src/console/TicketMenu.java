@@ -4,8 +4,8 @@ import models.entities.Contract;
 import models.entities.Ticket;
 import models.enums.TicketStatus;
 import models.enums.TransportType;
-import services.ContractService;
-import services.TicketService;
+import services.Implementations.ContractService;
+import services.Implementations.TicketService;
 
 import java.sql.Date;
 import java.util.List;
