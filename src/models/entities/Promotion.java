@@ -14,11 +14,12 @@ public class Promotion {
     private Date startDate;
     private Date endDate;
     private DiscountType discountType;
+    private float discountValue;
     private String conditions;
     private OfferStatus offerStatus;
     private UUID contractId;
 
-    public Promotion(UUID id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, String conditions, OfferStatus offerStatus, UUID contractId) {
+    public Promotion(UUID id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus, UUID contractId) {
 
         this.id = id;
         this.offerName = offerName;
@@ -26,6 +27,7 @@ public class Promotion {
         this.startDate = startDate;
         this.endDate = endDate;
         this.discountType = discountType;
+        this.discountValue = discountValue;
         this.conditions = conditions;
         this.offerStatus = offerStatus;
         this.contractId = contractId;
@@ -78,6 +80,14 @@ public class Promotion {
 
     public void setDiscountType(DiscountType discountType) {
         this.discountType = discountType;
+    }
+
+    public float getDiscountValue() {
+        return discountValue;
+    }
+
+    public void setDiscountValue(float discountValue) {
+        this.discountValue = discountValue;
     }
 
     public String getConditions() {

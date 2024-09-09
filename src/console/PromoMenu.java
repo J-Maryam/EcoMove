@@ -12,9 +12,7 @@ import services.PromoService;
 
 import java.sql.Connection;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 public class PromoMenu {
 
@@ -117,11 +115,23 @@ public class PromoMenu {
 
     public void viewAllPromotions(){
 
-        boolean displayed =  promoService.viewAllPromos();
-        if (displayed) {
-            System.out.println("Promotions displayed successfully.");
-        }else {
-            System.out.println("No promotions found.");
+        List<Promotion> promotions = promoService.viewAllPromos();
+
+        if (promotions.isEmpty()) {
+            System.out.println("There are no promotions.");
+        }
+
+        for (Promotion promotion : promotions) {
+            System.out.println("Promotion ID: " + promotion.getId());
+            System.out.println("Offer name: " + promotion.getOfferName());
+            System.out.println("Description: " + promotion.getDescription());
+            System.out.println("Start Date: " + promotion.getStartDate());
+            System.out.println("End Date: " + promotion.getEndDate());
+            System.out.println("Discount Type: " + promotion.getDiscountType());
+            System.out.println("Conditions: " + promotion.getConditions());
+            System.out.println("Offer Status: " + promotion.getOfferStatus());
+            System.out.println("Contract ID: " + promotion.getContractId());
+            System.out.println("===============================");
         }
 
     }

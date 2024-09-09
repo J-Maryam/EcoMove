@@ -3,6 +3,7 @@ package services;
 import dao.PromoDao;
 import models.entities.Promotion;
 
+import java.util.List;
 import java.util.UUID;
 
 public class PromoService {
@@ -17,7 +18,7 @@ public class PromoService {
         return promoDao.addPromotion(promo);
     }
 
-    public boolean viewAllPromos() {
+    public List<Promotion> viewAllPromos() {
         return promoDao.displayPromotions();
     }
 

@@ -7,6 +7,8 @@ import models.enums.DiscountType;
 import models.enums.OfferStatus;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class PromoDao {
@@ -19,7 +21,7 @@ public class PromoDao {
 
     public boolean addPromotion(Promotion promotion) {
 
-        String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -29,6 +31,7 @@ public class PromoDao {
             ps.setDate(4, new java.sql.Date(promotion.getStartDate().getTime()));
             ps.setDate(5, new java.sql.Date(promotion.getEndDate().getTime()));
             ps.setObject(6, promotion.getDiscountType().toString(), java.sql.Types.OTHER);
+            ps.setFloat(7, promotion.getDiscountValue());
             ps.setString(7, promotion.getConditions());
             ps.setObject(8, promotion.getOfferStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(9, promotion.getContractId());
@@ -42,30 +45,35 @@ public class PromoDao {
         return false;
     }
 
-    public boolean displayPromotions() {
+    public List<Promotion> displayPromotions() {
+
         String sql = "SELECT * FROM promo";
+        List<Promotion> promos = new ArrayList<>();
+
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                System.out.println("Promotion ID: " + rs.getObject("id"));
-                System.out.println("Offer name: " + rs.getString("offerName"));
-                System.out.println("Description: " + rs.getString("description"));
-                System.out.println("Start Date: " + rs.getDate("startDate"));
-                System.out.println("End Date: " + rs.getDate("endDate"));
-                System.out.println("Discount Type: " + DiscountType.valueOf(rs.getString("discountType")));
-                System.out.println("Conditions: " + rs.getString("conditions"));
-                System.out.println("Offer Status: " + OfferStatus.valueOf(rs.getString("offerStatus")));
-                System.out.println("Contract ID: " + rs.getObject("contractID"));
-                System.out.println("===============================");
-            }
-            return true;
+                UUID id = (UUID) rs.getObject("id");
+                String offerName = rs.getString("offerName");
+                String description = rs.getString("description");
+                Date startDate = rs.getDate("startDate");
+                Date endDate = rs.getDate("endDate");
+                DiscountType discountType = DiscountType.valueOf(rs.getString("discountType"));
+                Float discountValue = rs.getFloat("discountValue");
+                String conditions = rs.getString("conditions");
+                OfferStatus offerStatus = OfferStatus.valueOf(rs.getString("offerStatus"));
+                UUID contractId = (UUID) rs.getObject("contractId");
 
+                Promotion promotion = new Promotion(id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId);
+                promos.add(promotion);
+
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     public boolean updatePromo(Promotion promotion) {
