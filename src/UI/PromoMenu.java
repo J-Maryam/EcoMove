@@ -36,10 +36,10 @@ public class PromoMenu {
             }
             switch (choice) {
                 case 1:
-                    createPromotion();
+                    addPromo();
                     break;
                 case 2:
-                    viewAllPromotions();
+                    getAllPromotions();
                     break;
                 case 3:
                     updatePromotion();
@@ -57,7 +57,7 @@ public class PromoMenu {
         }
     }
 
-    public void createPromotion() {
+    public void addPromo() {
 
         System.out.println("Enter offer name: ");
         String offerName = scanner.nextLine();
@@ -76,6 +76,9 @@ public class PromoMenu {
         System.out.print("Enter discount type (pourcentage, fixe): ");
         String discountType = scanner.nextLine();
 
+        System.out.print("Enter discount value : ");
+        float discountValue = Float.parseFloat(scanner.nextLine());
+
         System.out.print("Enter conditions : ");
         String conditions = scanner.nextLine();
 
@@ -92,6 +95,7 @@ public class PromoMenu {
                 startDate,
                 endDate,
                 DiscountType.valueOf(discountType.toLowerCase()),
+                discountValue,
                 conditions,
                 OfferStatus.valueOf(offerStatus.toLowerCase()),
                 contractId
@@ -106,9 +110,9 @@ public class PromoMenu {
 
     }
 
-    public void viewAllPromotions(){
+    public void getAllPromotions(){
 
-        List<Promotion> promotions = promoService.viewAllPromos();
+        List<Promotion> promotions = promoService.getAllPromotions();
 
         if (promotions.isEmpty()) {
             System.out.println("There are no promotions.");
@@ -121,6 +125,7 @@ public class PromoMenu {
             System.out.println("Start Date: " + promotion.getStartDate());
             System.out.println("End Date: " + promotion.getEndDate());
             System.out.println("Discount Type: " + promotion.getDiscountType());
+            System.out.println("Discount Value: " + promotion.getDiscountValue());
             System.out.println("Conditions: " + promotion.getConditions());
             System.out.println("Offer Status: " + promotion.getOfferStatus());
             System.out.println("Contract ID: " + promotion.getContractId());
@@ -152,6 +157,9 @@ public class PromoMenu {
         String newDiscountType = scanner.nextLine();
         DiscountType discountType = DiscountType.valueOf(newDiscountType.toLowerCase());
 
+        System.out.print("Enter new discount value : ");
+        float newDiscountValue = Float.parseFloat(scanner.nextLine());
+
         System.out.print("Enter new conditions: ");
         String newConditions = scanner.nextLine();
 
@@ -169,6 +177,7 @@ public class PromoMenu {
                 startDate,
                 endDate,
                 discountType,
+                newDiscountValue,
                 newConditions,
                 offerStatus,
                 newContractId

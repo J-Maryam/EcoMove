@@ -1,6 +1,7 @@
 package dao.Implementations;
 
 
+import dao.Interfaces.IPromoDao;
 import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PromoDao {
+public class PromoDao implements IPromoDao {
 
     private Connection connection;
 
@@ -18,7 +19,8 @@ public class PromoDao {
         this.connection = connection;
     }
 
-    public boolean addPromotion(Promotion promotion) {
+    @Override
+    public boolean addPromo(Promotion promotion) {
 
         String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -44,7 +46,8 @@ public class PromoDao {
         return false;
     }
 
-    public List<Promotion> displayPromotions() {
+    @Override
+    public List<Promotion> getAllPromotions() {
 
         String sql = "SELECT * FROM promo";
         List<Promotion> promos = new ArrayList<>();
@@ -75,6 +78,7 @@ public class PromoDao {
         return null;
     }
 
+    @Override
     public boolean updatePromo(Promotion promotion) {
         String sql = "UPDATE promo SET offerName = ?, description = ?, startDate = ?, endDate = ?, discountType = ?, discountValue = ?, conditions = ?, offerStatus = ?, contractId = ? WHERE id = ?";
 
@@ -100,6 +104,7 @@ public class PromoDao {
         return false;
     }
 
+    @Override
     public boolean deletePromo(UUID id) {
         String sql = "DELETE FROM promo WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
