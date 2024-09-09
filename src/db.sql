@@ -1,10 +1,10 @@
 
-create type transportType as enum ('airplane', 'train', 'bus');
-create type partnerStatus as enum ('active', 'inactive', 'suspended');
-create type contractStatus as enum ('ongoing', 'terminated', 'suspended');
-create type discountType as enum ('pourcentage', 'fixe');
-create type offerStatus as enum ('active', 'expired', 'suspended');
-create type ticketStatus as enum ('sold', 'canceled', 'pending');
+create type transportType as enum ('AIRPLANE', 'TRAIN', 'BUS');
+create type partnerStatus as enum ('ACTIVE', 'INACTIVE', 'SUSPENDED');
+create type contractStatus as enum ('ONGOING', 'TERMINATED', 'SUSPENDED');
+create type discountType as enum ('POURCENTAGE', 'FIXE');
+create type offerStatus as enum ('ACTIVE', 'EXPIRED', 'SUSPENDED');
+create type ticketStatus as enum ('SOLD', 'CANCELED', 'PENDING');
 
 create table partners
 (
@@ -28,7 +28,7 @@ create table contracts
     renewable boolean,
     contractStatus contractStatus,
     partnerId UUID,
-    foreign key (partnerId) references partner(id)
+    foreign key (partnerId) references partners(id)
 );
 
 create table promos
@@ -42,7 +42,7 @@ create table promos
     conditions text,
     offerStatus offerStatus,
     contractId UUID,
-    foreign key (contractId) references contract(id)
+    foreign key (contractId) references contracts(id)
 );
 
 create table tickets
@@ -54,10 +54,7 @@ create table tickets
     saleDate date,
     ticketStatus ticketStatus,
     contractId UUID,
-    foreign key (contractId) references contract(id),
-    departureCity varchar(200),
-    destinationCity varchar(200),
-    departureDate date
+    foreign key (contractId) references contracts(id)
 );
 
 create table clients
@@ -84,20 +81,20 @@ create table reservationTicket
     id int primary key,
     reservationId int,
     foreign key (reservationId) references reservations(id),
-    ticketId int,
-    foreign key (ticketId) references ticket(id)
+    ticketId UUID,
+    foreign key (ticketId) references tickets(id)
 );
 
 create table cities (
     id int primary key,
-    cityName varchar(20)
+    cityName varchar(50)
 );
 
 create table journeys(
     id int primary key,
     departureCity int,
-    foreign key (departureCity) references villes(id),
+    foreign key (departureCity) references cities(id),
     destinationCity int,
-    foreign key (destinationCity) references villes(id),
+    foreign key (destinationCity) references cities(id),
     departureDate date
 )

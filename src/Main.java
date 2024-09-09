@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
 
         DbFunctions db = DbFunctions.getInstance();
-        Connection connection = db.connectToDb("EcoMove", "postgres", "@aahmhmm28");
+        Connection connection = db.connectToDb("EcoMove-v2", "postgres", "@aahmhmm28");
 
         ContractDao contractDao = new ContractDao(connection);
         ContractService contractService = new ContractService(contractDao);
