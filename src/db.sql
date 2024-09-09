@@ -6,7 +6,7 @@ create type discountType as enum ('pourcentage', 'fixe');
 create type offerStatus as enum ('active', 'expired', 'suspended');
 create type ticketStatus as enum ('sold', 'canceled', 'pending');
 
-create table partner
+create table partners
 (
     id UUID primary key ,
     companyName varchar(200),
@@ -18,7 +18,7 @@ create table partner
     creationDate date
 );
 
-create table contract
+create table contracts
 (
     id UUID primary key ,
     startDate date,
@@ -31,7 +31,7 @@ create table contract
     foreign key (partnerId) references partner(id)
 );
 
-create table promo
+create table promos
 (
     id UUID primary key ,
     offerName varchar(200),
@@ -43,9 +43,9 @@ create table promo
     offerStatus offerStatus,
     contractId UUID,
     foreign key (contractId) references contract(id)
-)
+);
 
-create table ticket
+create table tickets
 (
     id UUID primary key ,
     transportType transportType,
@@ -58,7 +58,7 @@ create table ticket
     departureCity varchar(200),
     destinationCity varchar(200),
     departureDate date
-)
+);
 
 create table clients
 (
@@ -67,7 +67,7 @@ create table clients
     lastName varchar(50),
     email varchar(200) unique,
     phone varchar(20)
-)
+);
 
 create table reservations
 (
@@ -77,7 +77,7 @@ create table reservations
     date date,
     price float,
     canceled boolean
-)
+);
 
 create table reservationTicket
 (
@@ -86,4 +86,18 @@ create table reservationTicket
     foreign key (reservationId) references reservations(id),
     ticketId int,
     foreign key (ticketId) references ticket(id)
+);
+
+create table cities (
+    id int primary key,
+    cityName varchar(20)
+);
+
+create table journeys(
+    id int primary key,
+    departureCity int,
+    foreign key (departureCity) references villes(id),
+    destinationCity int,
+    foreign key (destinationCity) references villes(id),
+    departureDate date
 )
