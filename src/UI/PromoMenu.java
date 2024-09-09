@@ -95,10 +95,10 @@ public class PromoMenu {
                 description,
                 startDate,
                 endDate,
-                DiscountType.valueOf(discountType.toLowerCase()),
+                DiscountType.valueOf(discountType.toUpperCase()),
                 discountValue,
                 conditions,
-                OfferStatus.valueOf(offerStatus.toLowerCase()),
+                OfferStatus.valueOf(offerStatus.toUpperCase()),
                 contractId
         );
 
@@ -156,7 +156,7 @@ public class PromoMenu {
 
         System.out.print("Enter new discount type (pourcentage, fixed price): ");
         String newDiscountType = scanner.nextLine();
-        DiscountType discountType = DiscountType.valueOf(newDiscountType.toLowerCase());
+        DiscountType discountType = DiscountType.valueOf(newDiscountType.toUpperCase());
 
         System.out.print("Enter new discount value : ");
         float newDiscountValue = Float.parseFloat(scanner.nextLine());
@@ -166,7 +166,7 @@ public class PromoMenu {
 
         System.out.print("Enter new offer status (active, expired, suspended): ");
         String newOfferStatus = scanner.nextLine();
-        OfferStatus offerStatus = OfferStatus.valueOf(newOfferStatus.toLowerCase());
+        OfferStatus offerStatus = OfferStatus.valueOf(newOfferStatus.toUpperCase());
 
         System.out.print("Enter new contract ID: ");
         UUID newContractId = UUID.fromString(scanner.nextLine());

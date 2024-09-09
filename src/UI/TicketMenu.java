@@ -67,7 +67,7 @@ public class TicketMenu {
     private void addTicket() {
 
         System.out.println("Enter Transport Type: (airplane, train, bus)");
-        TransportType transportType = TransportType.valueOf(scanner.nextLine().toLowerCase());
+        TransportType transportType = TransportType.valueOf(scanner.nextLine().toUpperCase());
 
         System.out.println("Enter Purchase Price: ");
         float purchasePrice = Float.parseFloat(scanner.nextLine());
@@ -79,7 +79,7 @@ public class TicketMenu {
         LocalDate saleDate = LocalDate.parse(scanner.nextLine());
 
         System.out.println("Enter Ticket Status (sold, canceled, pending): ");
-        TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toLowerCase());
+        TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toUpperCase());
 
         System.out.println("Enter Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
@@ -126,7 +126,7 @@ public class TicketMenu {
         UUID id = UUID.fromString(scanner.nextLine());
 
         System.out.println("Enter new Transport Type (airplane, train, bus) : ");
-        TransportType transportType = TransportType.valueOf(scanner.nextLine().toLowerCase());
+        TransportType transportType = TransportType.valueOf(scanner.nextLine().toUpperCase());
 
         System.out.println("Enter new Purchase Price: ");
         float purchasePrice = Float.parseFloat(scanner.nextLine());
@@ -138,7 +138,7 @@ public class TicketMenu {
         LocalDate saleDate = LocalDate.parse(scanner.nextLine());
 
         System.out.println("Enter new Ticket Status (sold, canceled, pending): ");
-        TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toLowerCase());
+        TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toUpperCase());
 
         System.out.println("Enter new Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());

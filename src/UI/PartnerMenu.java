@@ -85,10 +85,10 @@ public class PartnerMenu {
                 UUID.randomUUID(),
                 companyName,
                 businessContact,
-                TransportType.valueOf(transportType.toLowerCase()),
+                TransportType.valueOf(transportType.toUpperCase()),
                 geographicZone,
                 specialConditions,
-                PartnerStatus.valueOf(partnerStatus.toLowerCase()),
+                PartnerStatus.valueOf(partnerStatus.toUpperCase()),
                 LocalDate.now()
         );
 
@@ -148,10 +148,10 @@ public class PartnerMenu {
                 partnerId,
                 newCompanyName,
                 newBusinessContact,
-                TransportType.valueOf(newTransportType.toLowerCase()),
+                TransportType.valueOf(newTransportType.toUpperCase()),
                 newGeographicZone,
                 newSpecialConditions,
-                PartnerStatus.valueOf(newPartnerStatus.toLowerCase()),
+                PartnerStatus.valueOf(newPartnerStatus.toUpperCase()),
                 LocalDate.now()
         );
 

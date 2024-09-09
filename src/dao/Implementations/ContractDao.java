@@ -61,7 +61,7 @@ public class ContractDao implements IContractDao {
                 float specialRate = rs.getFloat("specialRate");
                 String agreementConditions = rs.getString("agreementConditions");
                 boolean renewable = rs.getBoolean("renewable");
-                ContractStatus contractStatus = ContractStatus.valueOf(rs.getString("contractStatus").toLowerCase());
+                ContractStatus contractStatus = ContractStatus.valueOf(rs.getString("contractStatus").toUpperCase());
                 UUID partnerId = (UUID) rs.getObject("partnerId");
 
                 Contract contract = new Contract(id, startDate, endDate, specialRate, agreementConditions, renewable, contractStatus, partnerId);

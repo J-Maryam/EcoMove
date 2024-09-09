@@ -109,7 +109,7 @@ public class ContractMenu {
                 specialRate,
                 agreementConditions,
                 renewable,
-                ContractStatus.valueOf(contractStatus.toLowerCase()),
+                ContractStatus.valueOf(contractStatus.toUpperCase()),
                 partnerId
         );
 
@@ -172,7 +172,7 @@ public class ContractMenu {
 
         System.out.print("Enter new contract status (ongoing, terminated, suspended): ");
         String contractStatusStr = scanner.nextLine();
-        ContractStatus contractStatus = ContractStatus.valueOf(contractStatusStr.toLowerCase());
+        ContractStatus contractStatus = ContractStatus.valueOf(contractStatusStr.toUpperCase());
 
         System.out.print("Enter new partner ID (UUID): ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
@@ -210,10 +210,5 @@ public class ContractMenu {
             System.out.println("Contract could not be deleted or does not exist.");
         }
     }
-
-
-
-
-
 
 }
