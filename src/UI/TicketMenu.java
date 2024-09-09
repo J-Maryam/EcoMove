@@ -42,10 +42,10 @@ public class TicketMenu {
             }
             switch (choice) {
                 case 1:
-                    createTicket();
+                    addTicket();
                     break;
                 case 2:
-                    displayAllTickets();
+                    getAllTickets();
                     break;
                 case 3:
                     updateTicket();
@@ -63,7 +63,7 @@ public class TicketMenu {
         }
     }
 
-    private void createTicket() {
+    private void addTicket() {
 
         System.out.println("Enter Transport Type: (airplane, train, bus)");
         TransportType transportType = TransportType.valueOf(scanner.nextLine().toLowerCase());
@@ -101,12 +101,11 @@ public class TicketMenu {
         }
     }
 
-    private void displayAllTickets() {
+    private void getAllTickets() {
         List<Ticket> tickets = ticketService.getAllTickets();
 
         if (tickets.isEmpty()) {
             System.out.println("No tickets found.");
-            return;
         }
 
         for (Ticket ticket : tickets) {
@@ -160,6 +159,5 @@ public class TicketMenu {
 
         System.out.println("Ticket deleted successfully!");
     }
-
 
 }

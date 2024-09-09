@@ -1,5 +1,6 @@
 package dao.Implementations;
 
+import dao.Interfaces.ITicketDao;
 import models.entities.Contract;
 import models.entities.Ticket;
 import models.enums.ContractStatus;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TicketDao {
+public class TicketDao implements ITicketDao {
 
     private Connection connection;
 
@@ -19,6 +20,7 @@ public class TicketDao {
         this.connection = connection;
     }
 
+    @Override
     public int addTicket(Ticket ticket) {
         String sql = "insert into ticket (id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contractId) values(?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -41,6 +43,7 @@ public class TicketDao {
         return 0;
     }
 
+    @Override
     public List<Ticket> getAllTickets() {
         String sql = "SELECT t.id, t.transportType, t.purchasePrice, t.salePrice, t.saleDate, t.ticketStatus, c.id as contractId, c.startDate, c.endDate, c.specialRate, c.agreementConditions, c.renewable, c.contractStatus FROM ticket t LEFT JOIN contract c ON t.contractId = c.id";
 
@@ -87,6 +90,7 @@ public class TicketDao {
         return tickets;
     }
 
+    @Override
     public int updateTicket(Ticket ticket) {
         String sql = "UPDATE ticket SET transportType = ?, purchasePrice = ?, salePrice = ?, saleDate = ?, ticketStatus = ?, contractId = ? WHERE id = ?";
 
@@ -109,6 +113,7 @@ public class TicketDao {
         return 0;
     }
 
+    @Override
     public int deleteTicket(UUID ticketId) {
         String sql = "DELETE FROM ticket WHERE id = ?";
 
