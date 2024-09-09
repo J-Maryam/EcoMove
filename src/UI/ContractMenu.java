@@ -42,7 +42,7 @@ public class ContractMenu {
                     createContract();
                     break;
                 case 2:
-                    displayAllContracts();
+                    getAllContracts();
                     break;
                 case 3:
                     updateContract();
@@ -119,7 +119,7 @@ public class ContractMenu {
         }
     }
 
-    public void displayAllContracts() {
+    public void getAllContracts() {
         List<Contract> contracts = contractService.getAllContracts();
 
         if (contracts.isEmpty()) {
@@ -183,7 +183,6 @@ public class ContractMenu {
         boolean isUpdated = contractService.updateContract(updatedContract);
         if (isUpdated) {
             System.out.println("Contract updated successfully.");
-            displayAllContracts();
         }else {
             System.out.println("Contract not updated.");
         }
@@ -198,7 +197,6 @@ public class ContractMenu {
 
         if (isDeleted) {
             System.out.println("Contract deleted successfully.");
-            displayAllContracts();
         } else {
             System.out.println("Contract could not be deleted or does not exist.");
         }
