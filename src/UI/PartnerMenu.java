@@ -6,6 +6,7 @@ import models.enums.TransportType;
 import services.Implementations.PartnerService;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -39,10 +40,10 @@ public class PartnerMenu {
             }
             switch (choice) {
                 case 1:
-                    createPartner();
+                    addPartner();
                     break;
                 case 2:
-                    viewAllPartner();
+                    getAllPartners();
                     break;
                 case 3:
                     updatePartner();
@@ -60,7 +61,7 @@ public class PartnerMenu {
         }
     }
 
-    public void createPartner(){
+    public void addPartner(){
 
         System.out.println("Enter company name: ");
         String companyName = scanner.nextLine();
@@ -100,15 +101,24 @@ public class PartnerMenu {
 
     }
 
-    public void viewAllPartner(){
+    public void getAllPartners(){
+        List<Partner> partners =  partnerService.getAllPartners();
 
-        boolean displayed =  partnerService.viewAllPartners();
-        if (displayed){
-            System.out.println("Partner list retrieved successfully");
-        }else {
-            System.out.println("Partner list empty");
+        if (partners.isEmpty()){
+            System.out.println("No partners found");
         }
 
+        for (Partner partner : partners) {
+            System.out.println("Partner ID: " + partner.getId());
+            System.out.println("Company Name: " + partner.getCompanyName());
+            System.out.println("Contact Person: " + partner.getBusinessContact());
+            System.out.println("Transport Type: " + partner.getTransportType());
+            System.out.println("Geographic Zone: " + partner.getGeographicZone());
+            System.out.println("Special Conditions: " + partner.getSpecialConditions());
+            System.out.println("Status: " + partner.getPartnerStatus());
+            System.out.println("Date Created: " + partner.getCreationDate());
+            System.out.println("-----------------------------------");
+        }
     }
 
     public void updatePartner(){

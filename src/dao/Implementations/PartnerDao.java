@@ -1,11 +1,16 @@
 package dao.Implementations;
 
+import dao.Interfaces.IPartnerDao;
 import models.entities.Partner;
+import models.enums.PartnerStatus;
+import models.enums.TransportType;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-public class PartnerDao {
+public class PartnerDao implements IPartnerDao {
 
     private Connection connection;
 
@@ -13,7 +18,8 @@ public class PartnerDao {
         this.connection = connection;
     }
 
-    public boolean createPartner(Partner partner)
+    @Override
+    public boolean addPartner(Partner partner)
     {
         String sql = "insert into partner (id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate) values (?,?,?,?,?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -37,31 +43,35 @@ public class PartnerDao {
 
     }
 
-    public boolean viewAllPartners()
-    {
+    @Override
+    public List<Partner> getAllPartners() {
         String sql = "SELECT * FROM partner";
+        List<Partner> partners = new ArrayList<>();
+
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {
-                System.out.println("Partner ID: " + rs.getObject("id"));
-                System.out.println("Company Name: " + rs.getString("companyName"));
-                System.out.println("Contact Person: " + rs.getString("businessContact"));
-                System.out.println("Transport Type: " + rs.getString("transportType"));
-                System.out.println("Geographic Zone: " + rs.getString("geographicZone"));
-                System.out.println("Special Conditions: " + rs.getString("specialConditions"));
-                System.out.println("Status: " + rs.getString("partnerStatus"));
-                System.out.println("Date Created: " + rs.getDate("creationDate"));
-                System.out.println("-----------------------------------");
-            }
-            return true;
+                UUID id = UUID.fromString(rs.getString("id"));
+                String companyName = rs.getString("companyName");
+                String businessContact = rs.getString("businessContact");
+                TransportType transportType = TransportType.valueOf(rs.getString("transportType").toUpperCase());
+                String geographicZone = rs.getString("geographicZone");
+                String specialConditions = rs.getString("specialConditions");
+                PartnerStatus partnerStatus = PartnerStatus.valueOf(rs.getString("partnerStatus").toUpperCase());
+                java.sql.Date creationDate = rs.getDate("creationDate");
 
+                Partner partner = new Partner(id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate.toLocalDate());
+                partners.add(partner);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+
+        return partners;
     }
 
+    @Override
     public int updatePartner(Partner partner)
     {
         String sql = "UPDATE partner SET companyName = ?, businessContact = ?, transportType = ?, geographicZone = ?, specialConditions = ?, partnerStatus = ?, creationDate = ? WHERE id = ?";
@@ -86,6 +96,7 @@ public class PartnerDao {
         return 0;
     }
 
+    @Override
     public int deletePartner(UUID id)
     {
         String sql = "DELETE FROM partner WHERE id = ?";
