@@ -6,6 +6,7 @@ import models.entities.Client;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ClientDao implements IClientDao {
 
@@ -35,8 +36,8 @@ public class ClientDao implements IClientDao {
     }
 
     @Override
-    public void viewAllClients() {
-
+    public List<Client> getAllClients() {
+        return null;
     }
 
     @Override
