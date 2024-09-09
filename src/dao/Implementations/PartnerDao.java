@@ -6,6 +6,7 @@ import models.enums.PartnerStatus;
 import models.enums.TransportType;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +32,7 @@ public class PartnerDao implements IPartnerDao {
             ps.setString(5, partner.getGeographicZone());
             ps.setString(6, partner.getSpecialConditions());
             ps.setObject(7, partner.getPartnerStatus().toString(), java.sql.Types.OTHER);
-            ps.setDate(8, java.sql.Date.valueOf(partner.getCreationDate()));
+            ps.setObject(8, partner.getCreationDate());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
@@ -59,9 +60,9 @@ public class PartnerDao implements IPartnerDao {
                 String geographicZone = rs.getString("geographicZone");
                 String specialConditions = rs.getString("specialConditions");
                 PartnerStatus partnerStatus = PartnerStatus.valueOf(rs.getString("partnerStatus").toUpperCase());
-                java.sql.Date creationDate = rs.getDate("creationDate");
+                LocalDate creationDate = LocalDate.parse(rs.getString("creationDate"));
 
-                Partner partner = new Partner(id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate.toLocalDate());
+                Partner partner = new Partner(id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate);
                 partners.add(partner);
             }
         } catch (SQLException e) {
@@ -84,7 +85,7 @@ public class PartnerDao implements IPartnerDao {
             ps.setString(4, partner.getGeographicZone());
             ps.setString(5, partner.getSpecialConditions());
             ps.setObject(6, partner.getPartnerStatus().toString(), java.sql.Types.OTHER);
-            ps.setDate(7, java.sql.Date.valueOf(partner.getCreationDate()));
+            ps.setObject(7, partner.getCreationDate());
             ps.setObject(8, partner.getId());
 
             int rowsAffected = ps.executeUpdate();

@@ -5,6 +5,7 @@ import models.enums.DiscountType;
 import models.enums.OfferStatus;
 import services.Implementations.PromoService;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class PromoMenu {
@@ -67,11 +68,11 @@ public class PromoMenu {
 
         System.out.print("Enter start date (yyyy-mm-dd): ");
         String startDateStr = scanner.nextLine();
-        java.sql.Date startDate = java.sql.Date.valueOf(startDateStr);
+        LocalDate startDate = LocalDate.parse(startDateStr);
 
         System.out.print("Enter end date (yyyy-mm-dd): ");
         String endDateStr = scanner.nextLine();
-        java.sql.Date endDate = java.sql.Date.valueOf(endDateStr);
+        LocalDate endDate = LocalDate.parse(endDateStr);
 
         System.out.print("Enter discount type (pourcentage, fixe): ");
         String discountType = scanner.nextLine();
@@ -147,11 +148,11 @@ public class PromoMenu {
 
         System.out.print("Enter new start date (yyyy-mm-dd): ");
         String newStartDate = scanner.nextLine();
-        java.sql.Date startDate = java.sql.Date.valueOf(newStartDate);
+        LocalDate startDate = LocalDate.parse(newStartDate);
 
         System.out.print("Enter new end date (yyyy-mm-dd): ");
         String newEndDate = scanner.nextLine();
-        java.sql.Date endDate = java.sql.Date.valueOf(newEndDate);
+        LocalDate endDate = LocalDate.parse(newEndDate);
 
         System.out.print("Enter new discount type (pourcentage, fixed price): ");
         String newDiscountType = scanner.nextLine();

@@ -1,16 +1,17 @@
 package models.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
 
     private int id;
     private Client client;
-    private Date date;
+    private LocalDate date;
     private float price;
     private boolean cancelled;
 
-    public Reservation(int id, Client client, Date date, float price, boolean cancelled) {
+    public Reservation(int id, Client client, LocalDate date, float price, boolean cancelled) {
         this.id = id;
         this.client = client;
         this.date = date;
@@ -34,11 +35,11 @@ public class Reservation {
         this.client = client;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -21,8 +21,8 @@ create table partners
 create table contracts
 (
     id UUID primary key ,
-    startDate date,
-    endDate date,
+    startDate date not null ,
+    endDate date not null ,
     specialRate decimal,
     agreementConditions text,
     renewable boolean,

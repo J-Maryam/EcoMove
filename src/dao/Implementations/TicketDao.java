@@ -8,6 +8,7 @@ import models.enums.TicketStatus;
 import models.enums.TransportType;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class TicketDao implements ITicketDao {
             ps.setObject(2, ticket.getTransportType().toString(), java.sql.Types.OTHER);
             ps.setFloat(3, ticket.getPurchasePrice());
             ps.setFloat(4, ticket.getSalePrice());
-            ps.setDate(5, new java.sql.Date(ticket.getSaleDate().getTime()));
+            ps.setObject(5, ticket.getSaleDate());
             ps.setObject(6, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(7, ticket.getContract().getId(), java.sql.Types.OTHER);
 
@@ -57,14 +58,14 @@ public class TicketDao implements ITicketDao {
                 TransportType transportType = TransportType.valueOf(rs.getString("transportType"));
                 float purchasePrice = rs.getFloat("purchasePrice");
                 float salePrice = rs.getFloat("salePrice");
-                Date saleDate = rs.getDate("saleDate");
+                LocalDate saleDate = LocalDate.parse(rs.getString("saleDate"));
                 TicketStatus ticketStatus = TicketStatus.valueOf(rs.getString("ticketStatus"));
 
                 UUID contractId = UUID.fromString(rs.getString("contractId"));
                 Contract contract = new Contract(
                         contractId,
-                        rs.getDate("startDate"),
-                        rs.getDate("endDate"),
+                        rs.getObject("startDate", LocalDate.class),
+                        rs.getObject("endDate", LocalDate.class),
                         rs.getFloat("specialRate"),
                         rs.getString("agreementConditions"),
                         rs.getBoolean("renewable"),
@@ -98,7 +99,7 @@ public class TicketDao implements ITicketDao {
             ps.setObject(1, ticket.getTransportType().toString(), java.sql.Types.OTHER);
             ps.setFloat(2, ticket.getPurchasePrice());
             ps.setFloat(3, ticket.getSalePrice());
-            ps.setDate(4, new java.sql.Date(ticket.getSaleDate().getTime()));
+            ps.setObject(4, ticket.getSaleDate());
             ps.setObject(5, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(6, ticket.getContract().getId());
             ps.setObject(7, ticket.getId());

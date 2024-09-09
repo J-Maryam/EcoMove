@@ -8,6 +8,7 @@ import services.Implementations.ContractService;
 import services.Implementations.TicketService;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -75,7 +76,7 @@ public class TicketMenu {
         float salePrice = Float.parseFloat(scanner.nextLine());
 
         System.out.println("Enter Sale Date (YYYY-MM-DD): ");
-        Date saleDate = java.sql.Date.valueOf(scanner.nextLine());
+        LocalDate saleDate = LocalDate.parse(scanner.nextLine());
 
         System.out.println("Enter Ticket Status (sold, canceled, pending): ");
         TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toLowerCase());
@@ -134,7 +135,7 @@ public class TicketMenu {
         float salePrice = Float.parseFloat(scanner.nextLine());
 
         System.out.println("Enter new Sale Date (YYYY-MM-DD): ");
-        Date saleDate = java.sql.Date.valueOf(scanner.nextLine());
+        LocalDate saleDate = LocalDate.parse(scanner.nextLine());
 
         System.out.println("Enter new Ticket Status (sold, canceled, pending): ");
         TicketStatus ticketStatus = TicketStatus.valueOf(scanner.nextLine().toLowerCase());

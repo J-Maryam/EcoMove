@@ -17,7 +17,7 @@ public class ContractService implements IContractService {
 
     @Override
     public boolean addContract(Contract contract) {
-        if (contract.getStartDate().after(contract.getEndDate())) {
+        if (contract.getStartDate().isAfter(contract.getEndDate())) {
             throw new IllegalArgumentException("La date de début ne peut pas être après la date de fin.");
         }
         return contractDao.addContract(contract);

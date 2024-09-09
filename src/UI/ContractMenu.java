@@ -5,6 +5,8 @@ import models.enums.ContractStatus;
 import services.Implementations.ContractService;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -39,7 +41,7 @@ public class ContractMenu {
             }
             switch (choice) {
                 case 1:
-                    createContract();
+                    addContract();
                     break;
                 case 2:
                     getAllContracts();
@@ -60,21 +62,21 @@ public class ContractMenu {
         }
     }
 
-    public void createContract() {
-        java.util.Date startDate = null;
-        java.util.Date endDate = null;
+    public void addContract() {
+        LocalDate startDate = null;
+        LocalDate endDate = null;
 
         while (!validDates) {
             try {
                 System.out.println("Enter start date (yyyy-MM-dd): ");
                 String startDateInput = scanner.nextLine();
-                startDate = java.sql.Date.valueOf(startDateInput);
+                startDate = LocalDate.parse(startDateInput);
 
                 System.out.println("Enter end date (yyyy-MM-dd): ");
                 String endDateInput = scanner.nextLine();
-                endDate = java.sql.Date.valueOf(endDateInput);
+                endDate = LocalDate.parse(endDateInput);
 
-                if (startDate.after(endDate)) {
+                if (startDate.isAfter(endDate)) {
                     System.out.println("La date de début ne peut pas être après la date de fin. Veuillez réessayer.");
                 } else {
                     validDates = true;
@@ -141,16 +143,23 @@ public class ContractMenu {
 
     public void updateContract() {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         System.out.println("Enter the ID of the contract to modify (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
         System.out.print("Enter new start date (yyyy-mm-dd): ");
         String startDateStr = scanner.nextLine();
-        Date startDate = Date.valueOf(startDateStr); // Conversion de String à Date
+        LocalDate startDate = LocalDate.parse(startDateStr, formatter);
 
         System.out.print("Enter new end date (yyyy-mm-dd): ");
         String endDateStr = scanner.nextLine();
-        Date endDate = Date.valueOf(endDateStr); // Conversion de String à Date
+        LocalDate endDate = LocalDate.parse(endDateStr, formatter);
+
+        if (startDate.isAfter(endDate)) {
+            System.out.println("La date de début ne peut pas être après la date de fin.");
+            return;
+        }
 
         System.out.print("Enter new special rate: ");
         float specialRate = Float.parseFloat(scanner.nextLine());

@@ -3,6 +3,7 @@ package models.entities;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,15 +12,15 @@ public class Promotion {
     private UUID id;
     private String offerName;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private DiscountType discountType;
     private float discountValue;
     private String conditions;
     private OfferStatus offerStatus;
     private UUID contractId;
 
-    public Promotion(UUID id, String offerName, String description, Date startDate, Date endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus, UUID contractId) {
+    public Promotion(UUID id, String offerName, String description, LocalDate startDate, LocalDate endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus, UUID contractId) {
 
         this.id = id;
         this.offerName = offerName;
@@ -58,19 +59,19 @@ public class Promotion {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

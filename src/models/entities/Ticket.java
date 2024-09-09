@@ -3,6 +3,7 @@ package models.entities;
 import models.enums.TicketStatus;
 import models.enums.TransportType;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,11 +13,11 @@ public class Ticket {
     private TransportType transportType;
     private float purchasePrice;
     private float salePrice;
-    private Date saleDate;
+    private LocalDate saleDate;
     private TicketStatus ticketStatus;
     private Contract contract;
 
-    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, Date saleDate, TicketStatus ticketStatus, Contract contract) {
+    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract) {
         this.id = id;
         this.transportType = transportType;
         this.purchasePrice = purchasePrice;
@@ -58,11 +59,11 @@ public class Ticket {
         this.salePrice = salePrice;
     }
 
-    public Date getSaleDate() {
+    public LocalDate getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Date saleDate) {
+    public void setSaleDate(LocalDate saleDate) {
         this.saleDate = saleDate;
     }
 

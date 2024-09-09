@@ -5,6 +5,7 @@ import models.entities.Contract;
 import models.enums.ContractStatus;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,8 +28,8 @@ public class ContractDao implements IContractDao {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, contract.getId());
-            ps.setDate(2, new java.sql.Date(contract.getStartDate().getTime()));
-            ps.setDate(3, new java.sql.Date(contract.getEndDate().getTime()));
+            ps.setObject(2, contract.getStartDate());
+            ps.setObject(3, contract.getEndDate());
             ps.setFloat(4, contract.getSpecialRate());
             ps.setString(5, contract.getAgreementConditions());
             ps.setBoolean(6, contract.isRenewable());
@@ -55,8 +56,8 @@ public class ContractDao implements IContractDao {
 
             while (rs.next()) {
                 UUID id = (UUID) rs.getObject("id");
-                Date startDate = rs.getDate("startDate");
-                Date endDate = rs.getDate("endDate");
+                LocalDate startDate = rs.getObject("startDate", LocalDate.class);
+                LocalDate endDate = rs.getObject("endDate", LocalDate.class);
                 float specialRate = rs.getFloat("specialRate");
                 String agreementConditions = rs.getString("agreementConditions");
                 boolean renewable = rs.getBoolean("renewable");
@@ -80,8 +81,8 @@ public class ContractDao implements IContractDao {
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
-            ps.setDate(1, new java.sql.Date(contract.getStartDate().getTime())); // Conversion en java.sql.Date
-            ps.setDate(2, new java.sql.Date(contract.getEndDate().getTime())); // Conversion en java.sql.Date
+            ps.setObject(1, contract.getStartDate());
+            ps.setObject(2, contract.getEndDate());
             ps.setFloat(3, contract.getSpecialRate());
             ps.setString(4, contract.getAgreementConditions());
             ps.setBoolean(5, contract.isRenewable());
@@ -125,8 +126,8 @@ public class ContractDao implements IContractDao {
 
             if (rs.next()) {
                 UUID contractId = UUID.fromString(rs.getString("id"));
-                java.util.Date startDate = rs.getDate("startDate");
-                java.util.Date endDate = rs.getDate("endDate");
+                LocalDate startDate = rs.getObject("startDate", LocalDate.class);
+                LocalDate endDate = rs.getObject("endDate", LocalDate.class);
                 float specialRate = rs.getFloat("specialRate");
                 String agreementConditions = rs.getString("agreementConditions");
                 boolean renewable = rs.getBoolean("renewable");

@@ -7,6 +7,7 @@ import models.enums.DiscountType;
 import models.enums.OfferStatus;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,8 +30,8 @@ public class PromoDao implements IPromoDao {
             ps.setObject(1, promotion.getId());
             ps.setString(2, promotion.getOfferName());
             ps.setString(3, promotion.getDescription());
-            ps.setDate(4, new java.sql.Date(promotion.getStartDate().getTime()));
-            ps.setDate(5, new java.sql.Date(promotion.getEndDate().getTime()));
+            ps.setObject(4, promotion.getStartDate());
+            ps.setObject(5, promotion.getEndDate());
             ps.setObject(6, promotion.getDiscountType().toString(), java.sql.Types.OTHER);
             ps.setFloat(7, promotion.getDiscountValue());
             ps.setString(8, promotion.getConditions());
@@ -59,8 +60,8 @@ public class PromoDao implements IPromoDao {
                 UUID id = (UUID) rs.getObject("id");
                 String offerName = rs.getString("offerName");
                 String description = rs.getString("description");
-                Date startDate = rs.getDate("startDate");
-                Date endDate = rs.getDate("endDate");
+                LocalDate startDate = LocalDate.parse(rs.getString("startDate"));
+                LocalDate endDate = LocalDate.parse(rs.getString("endDate"));
                 DiscountType discountType = DiscountType.valueOf(rs.getString("discountType"));
                 Float discountValue = rs.getFloat("discountValue");
                 String conditions = rs.getString("conditions");
@@ -86,8 +87,8 @@ public class PromoDao implements IPromoDao {
 
             ps.setString(1, promotion.getOfferName());
             ps.setString(2, promotion.getDescription());
-            ps.setDate(3, new java.sql.Date(promotion.getStartDate().getTime()));
-            ps.setDate(4, new java.sql.Date(promotion.getEndDate().getTime()));
+            ps.setObject(3, promotion.getStartDate());
+            ps.setObject(4, promotion.getEndDate());
             ps.setObject(5, promotion.getDiscountType().toString(), java.sql.Types.OTHER);
             ps.setFloat(6, promotion.getDiscountValue());
             ps.setString(7, promotion.getConditions());
