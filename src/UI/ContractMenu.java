@@ -1,4 +1,4 @@
-package console;
+package UI;
 
 import models.entities.Contract;
 import models.enums.ContractStatus;

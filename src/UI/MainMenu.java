@@ -1,4 +1,4 @@
-package console;
+package UI;
 
 import services.Implementations.ContractService;
 import services.Implementations.PartnerService;

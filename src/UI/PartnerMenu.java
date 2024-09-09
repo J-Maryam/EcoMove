@@ -1,4 +1,4 @@
-package console;
+package UI;
 
 import models.entities.Partner;
 import models.enums.PartnerStatus;

@@ -1,4 +1,4 @@
-package console;
+package UI;
 
 import models.entities.Promotion;
 import models.enums.DiscountType;

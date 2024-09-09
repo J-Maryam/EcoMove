@@ -1,5 +1,5 @@
 import config.DbFunctions;
-import console.*;
+import UI.*;
 import dao.Implementations.ContractDao;
 import dao.Implementations.PartnerDao;
 import dao.Implementations.PromoDao;
