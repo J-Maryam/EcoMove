@@ -67,6 +67,20 @@ public class ClientDao implements IClientDao {
 
     @Override
     public int updateProfile(Client client) {
+        String sql = "update clients set firstName = ?, lastName = ?, email = ?, phone = ? where id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, client.getFirstName());
+            ps.setString(2, client.getLastName());
+            ps.setString(3, client.getEmail());
+            ps.setString(4, client.getPhone());
+            ps.setObject(5, client.getId());
+
+            int rowAffected = ps.executeUpdate();
+            return rowAffected;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

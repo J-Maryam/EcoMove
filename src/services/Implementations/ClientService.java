@@ -39,7 +39,11 @@ public class ClientService implements IClientService {
 
     @Override
     public int updateProfile(Client client) {
-        return 0;
+        if (!isValidEmail(client.getEmail())) {
+            System.out.println("Invalid email");
+            return -1;
+        }
+        return clientDao.updateProfile(client);
     }
 
     @Override

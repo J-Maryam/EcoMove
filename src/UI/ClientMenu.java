@@ -13,6 +13,9 @@ public class ClientMenu {
     private IClientService iClientService;
     private Scanner scanner = new Scanner(System.in);
 
+    boolean isEmailValid = false;
+    String email;
+
     public ClientMenu(IClientService iClientService) {
         this.iClientService = iClientService;
     }
@@ -28,8 +31,6 @@ public class ClientMenu {
         System.out.println("Enter your last name: ");
         String lastName = scanner.nextLine();
 
-        boolean isEmailValid = false;
-        String email;
         do {
             System.out.println("Enter your email address: ");
             email = scanner.nextLine();
@@ -76,5 +77,47 @@ public class ClientMenu {
             }
         }
 
+    }
+
+    public void updateProfile() {
+
+        System.out.println("==== Update your profile ====");
+
+        System.out.println("Enter the Id client to update (UUID): ");
+        UUID id = UUID.fromString(scanner.nextLine());
+
+        System.out.println("Enter your first name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.println("Enter your last name: ");
+        String lastName = scanner.nextLine();
+
+        String email;
+        boolean isEmailValid = false;
+        do {
+            System.out.println("Enter your email address: ");
+            email = scanner.nextLine();
+
+            if (iClientService.isValidEmail(email)) {
+                isEmailValid = true;
+            } else {
+                System.out.println("Invalid email. Please enter a valid email.");
+            }
+
+        } while (!isEmailValid);
+
+        System.out.println("Enter your phone number: ");
+        String phone = scanner.nextLine();
+
+        Client client = new Client(id, firstName, lastName, email, phone);
+
+        int rowAffected = iClientService.updateProfile(client);
+        if (rowAffected > 0) {
+            System.out.println("Client updated successfully!");
+        } else if (rowAffected == -1) {
+            System.out.println("Failed to update! Invalid email.");
+        } else {
+            System.out.println("Failed to update profile! Please try again.");
+        }
     }
 }
