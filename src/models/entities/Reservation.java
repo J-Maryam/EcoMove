@@ -2,16 +2,19 @@ package models.entities;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
 public class Reservation {
 
-    private int id;
+    private UUID id;
     private Client client;
     private LocalDate date;
     private float price;
     private boolean cancelled;
 
-    public Reservation(int id, Client client, LocalDate date, float price, boolean cancelled) {
+    public Reservation() {}
+
+    public Reservation(UUID id, Client client, LocalDate date, float price, boolean cancelled) {
         this.id = id;
         this.client = client;
         this.date = date;
@@ -19,11 +22,11 @@ public class Reservation {
         this.cancelled = cancelled;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
