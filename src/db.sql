@@ -59,7 +59,7 @@ create table tickets
 
 create table clients
 (
-    id int primary key,
+    id UUID primary key,
     firstName varchar(50),
     lastName varchar(50),
     email varchar(200) unique,

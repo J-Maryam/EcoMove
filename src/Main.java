@@ -34,7 +34,7 @@ public class Main {
         ClientDao clientDao = new ClientDao(connection);
         ClientService clientService = new ClientService(clientDao);
         ClientMenu clientMenu = new ClientMenu(clientService);
-        clientMenu.addClient();
+        clientMenu.getAllClients();
 
 
     }

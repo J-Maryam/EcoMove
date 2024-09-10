@@ -4,7 +4,9 @@ import models.entities.Client;
 import services.Implementations.ClientService;
 import services.Interfaces.IClientService;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ClientMenu {
 
@@ -43,7 +45,7 @@ public class ClientMenu {
         System.out.println("Enter your phone number: ");
         String phone = scanner.nextLine();
 
-        Client client = new Client(firstName, lastName, email, phone);
+        Client client = new Client(UUID.randomUUID() ,firstName, lastName, email, phone);
 
         int isAdded = iClientService.addClient(client);
 
@@ -53,6 +55,25 @@ public class ClientMenu {
             System.out.println("Failed to register! Invalid email.");
         } else {
             System.out.println("Client failed to register!");
+        }
+
+    }
+
+    public void getAllClients() {
+        List<Client> clients = iClientService.getAllClients();
+
+        if(clients.isEmpty()) {
+            System.out.println("No clients found!");
+        }else {
+            System.out.println("======= Clients List =======");
+            for (Client client : clients){
+                System.out.println("Id : " + client.getId());
+                System.out.println("First Name : " + client.getFirstName());
+                System.out.println("Last Name : " + client.getLastName());
+                System.out.println("Email : " + client.getEmail());
+                System.out.println("Phone Number : " + client.getPhone());
+                System.out.println("=======================================");
+            }
         }
 
     }

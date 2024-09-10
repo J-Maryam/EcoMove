@@ -1,25 +1,28 @@
 package models.entities;
 
+import java.util.UUID;
+
 public class Client {
 
-    private int id;
+    private UUID id;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
 
-    public Client(String firstName, String lastName, String email, String phone) {
+    public Client(UUID id,String firstName, String lastName, String email, String phone) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
