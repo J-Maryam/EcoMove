@@ -4,6 +4,7 @@ import services.Implementations.ContractService;
 import services.Implementations.PartnerService;
 import services.Implementations.PromoService;
 import services.Implementations.TicketService;
+import services.Interfaces.*;
 
 import java.sql.Connection;
 import java.util.Scanner;
@@ -13,17 +14,19 @@ public class MainMenu {
     private Scanner scanner = new Scanner(System.in);;
     int choice;
 
-    ContractService contractService;
-    PartnerService partnerService;
-    TicketService ticketService;
-    PromoService promoService;
+    IContractService iContractService;
+    IPartnerService iPartnerService;
+    ITicketService iTicketService;
+    IPromoService iPromoService;
+    IClientService iClientService;
 
 
-    public MainMenu(ContractService contractService, PartnerService partnerService, TicketService ticketService, PromoService promoService) {
-        this.contractService = contractService;
-        this.partnerService = partnerService;
-        this.ticketService = ticketService;
-        this.promoService = promoService;
+    public MainMenu(IContractService iContractService, IPartnerService iPartnerService, ITicketService iTicketService, IPromoService iPromoService, IClientService iClientService) {
+        this.iContractService = iContractService;
+        this.iPartnerService = iPartnerService;
+        this.iTicketService = iTicketService;
+        this.iPromoService = iPromoService;
+        this.iClientService = iClientService;
     }
 
     public void displayMainMenu() {
@@ -32,9 +35,9 @@ public class MainMenu {
         while (run) {
             System.out.println("====== Main Menu ======");
             System.out.println("1. Manage Partners");
-            System.out.println("2. Manage Promotions");
+            System.out.println("2. Manage Contracts");
             System.out.println("3. Manage Tickets");
-            System.out.println("4. Manage Contract");
+            System.out.println("4. Manage Promotions");
             System.out.println("0. Exit");
             System.out.println("Enter your choice: ");
 
@@ -45,20 +48,20 @@ public class MainMenu {
             }
             switch (choice) {
                 case 1:
-                    PartnerMenu partnerMenu = new PartnerMenu(partnerService);
+                    PartnerMenu partnerMenu = new PartnerMenu(iPartnerService);
                     partnerMenu.displayPartnerMenu();
                     break;
                 case 2:
-                    PromoMenu promoMenu = new PromoMenu(promoService);
-                    promoMenu.displayPromoMenu();
+                    ContractMenu contractMenu = new ContractMenu(iContractService);
+                    contractMenu.displayContractMenu();
                     break;
                 case 3:
-                    TicketMenu ticketMenu = new TicketMenu(ticketService);
+                    TicketMenu ticketMenu = new TicketMenu(iTicketService);
                     ticketMenu.displayTicketMenu();
                     break;
                 case 4:
-                    ContractMenu contractMenu = new ContractMenu(contractService);
-                    contractMenu.displayContractMenu();
+                    PromoMenu promoMenu = new PromoMenu(iPromoService);
+                    promoMenu.displayPromoMenu();
                     break;
                 case 0:
                     System.out.println("Exiting...!");
@@ -67,6 +70,31 @@ public class MainMenu {
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
+        }
+    }
+
+    public void firstMenu() {
+        System.out.println("Hi User !");
+        System.out.println("=============");
+        System.out.println("Are you a client or an admin?");
+        System.out.println("1. Client");
+        System.out.println("2. Admin");
+        System.out.println("Please choose an option (1/2):");
+
+        int choice = Integer.parseInt(scanner.nextLine());
+
+        switch (choice) {
+            case 1:
+                ClientMenu clientMenu = new ClientMenu(iClientService);
+                clientMenu.seConnect();
+                break;
+            case 2:
+                displayMainMenu();
+                break;
+            default:
+                System.out.println("Invalid choice. Please choose 1 or 2.");
+                firstMenu();
+                break;
         }
     }
 }

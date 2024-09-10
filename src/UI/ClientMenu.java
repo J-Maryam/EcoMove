@@ -47,6 +47,7 @@ public class ClientMenu {
                     break;
                 case 0:
                     System.out.println("Exiting client menu...");
+                    running = false;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -177,6 +178,7 @@ public class ClientMenu {
         if (client != null) {
             this.currentClientId = client.getId();
             System.out.println("You are authenticated successfully !");
+            displayMenu();
         }else {
             System.out.println("You are not registered yet!");
             System.out.println("Do you want to register? (yes/no)");
