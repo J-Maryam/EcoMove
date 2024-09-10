@@ -23,7 +23,7 @@ public class PromoDao implements IPromoDao {
     @Override
     public boolean addPromo(Promotion promotion) {
 
-        String sql = "insert into promos (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into promos (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
