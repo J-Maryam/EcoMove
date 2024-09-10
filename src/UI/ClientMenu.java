@@ -26,8 +26,19 @@ public class ClientMenu {
         System.out.println("Enter your last name: ");
         String lastName = scanner.nextLine();
 
-        System.out.println("Enter your email address: ");
-        String email = scanner.nextLine();
+        boolean isEmailValid = false;
+        String email;
+        do {
+            System.out.println("Enter your email address: ");
+            email = scanner.nextLine();
+
+            if (iClientService.isValidEmail(email)) {
+                isEmailValid = true;
+            } else {
+                System.out.println("Invalid email. Please enter a valid email.");
+            }
+
+        } while (!isEmailValid);
 
         System.out.println("Enter your phone number: ");
         String phone = scanner.nextLine();
@@ -38,8 +49,10 @@ public class ClientMenu {
 
         if (isAdded > 0) {
             System.out.println("Client added successfully !");
-        }else {
-            System.out.println("Client failed to register !");
+        } else if (isAdded == -1) {
+            System.out.println("Failed to register! Invalid email.");
+        } else {
+            System.out.println("Client failed to register!");
         }
 
     }

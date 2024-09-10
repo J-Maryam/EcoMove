@@ -5,6 +5,7 @@ import models.entities.Client;
 import java.util.List;
 
 public interface IClientService {
+    boolean isValidEmail(String email);
     int addClient(Client client);
     List<Client> getAllClients();
     int updateProfile(Client client);

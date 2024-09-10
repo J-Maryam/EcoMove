@@ -12,6 +12,10 @@ public class ClientService implements IClientService {
 
     private ClientDao clientDao;
 
+    public ClientService(ClientDao clientDao) {
+        this.clientDao = clientDao;
+    }
+
     public boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9+_.-]+@(.+)$";
 
@@ -20,11 +24,12 @@ public class ClientService implements IClientService {
         return matcher.matches();
     }
 
-    public ClientService(ClientDao clientDao) {
-        this.clientDao = clientDao;
-    }
-
     public int addClient(Client client) {
+
+        if (!isValidEmail(client.getEmail())) {
+            System.out.println("Invalid email");
+            return -1;
+        }
         return clientDao.addClient(client);
     }
 
