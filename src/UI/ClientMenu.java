@@ -15,6 +15,7 @@ public class ClientMenu {
 
     boolean isEmailValid = false;
     String email;
+    private UUID currentClientId;
 
     public ClientMenu(IClientService iClientService) {
         this.iClientService = iClientService;
@@ -26,8 +27,9 @@ public class ClientMenu {
         int choice;
         while (running) {
             System.out.println("==== Client Menu ====");
-            System.out.println("1. Update Profile");
-            System.out.println("2. Search Tickets");
+            System.out.println("1. View My Profile");
+            System.out.println("2. Update Profile");
+            System.out.println("3. Search Tickets");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
@@ -35,9 +37,12 @@ public class ClientMenu {
 
             switch (choice) {
                 case 1:
-                    updateProfile();
+                    viewMyProfile(currentClientId);
                     break;
                 case 2:
+                    updateProfile();
+                    break;
+                case 3:
 //                    searcheeee ticket;
                     break;
                 case 0:
@@ -170,6 +175,7 @@ public class ClientMenu {
         Client client = iClientService.getClientByDetails(firstName, lastName, email);
 
         if (client != null) {
+            this.currentClientId = client.getId();
             System.out.println("You are authenticated successfully !");
         }else {
             System.out.println("You are not registered yet!");
@@ -193,6 +199,26 @@ public class ClientMenu {
             }else {
                 System.out.println("Registration canceled");
             }
+        }
+    }
+
+    public void viewMyProfile(UUID id) {
+        if (currentClientId != null) {
+            System.out.println("==== My Profile ====");
+
+            Client client = iClientService.viewMyProfile(id);
+
+            if (client != null) {
+                System.out.println("Id : " + client.getId());
+                System.out.println("First Name : " + client.getFirstName());
+                System.out.println("Last Name : " + client.getLastName());
+                System.out.println("Email : " + client.getEmail());
+                System.out.println("Phone Number : " + client.getPhone());
+            } else {
+                System.out.println("Profile not found!");
+            }
+        }else {
+            System.out.println("You are not registered yet!");
         }
     }
 }

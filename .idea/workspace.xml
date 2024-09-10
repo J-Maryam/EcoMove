@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/ClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ClientMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Implementations/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Implementations/ClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Interfaces/IClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Interfaces/IClientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/Implementations/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Implementations/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/Interfaces/IClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Interfaces/IClientService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

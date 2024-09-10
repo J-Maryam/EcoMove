@@ -6,6 +6,7 @@ import models.entities.Client;
 import services.Interfaces.IClientService;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,8 +59,8 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void searchClient(Client client) {
-
+    public Client viewMyProfile(UUID id) {
+        return iClientDao.viewMyProfile(id);
     }
 
 }

@@ -90,8 +90,29 @@ public class ClientDao implements IClientDao {
     }
 
     @Override
-    public void searchClient(Client client) {
+    public Client viewMyProfile(UUID id) {
+        Client client = null;
+        String sql = "SELECT * FROM clients WHERE id = ?";
 
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setObject(1, id);  // Assigner correctement l'UUID en tant que paramètre
+
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    UUID clientId = UUID.fromString(rs.getString("id"));  // Renommer en clientId pour éviter toute confusion
+                    String firstName = rs.getString("firstName");
+                    String lastName = rs.getString("lastName");
+                    String email = rs.getString("email");
+                    String phone = rs.getString("phone");
+
+                    client = new Client(clientId, firstName, lastName, email, phone);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return client;
     }
 
     @Override
