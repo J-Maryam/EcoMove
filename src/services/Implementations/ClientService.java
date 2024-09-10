@@ -1,6 +1,7 @@
 package services.Implementations;
 
 import dao.Implementations.ClientDao;
+import dao.Interfaces.IClientDao;
 import models.entities.Client;
 import services.Interfaces.IClientService;
 
@@ -10,10 +11,10 @@ import java.util.regex.Pattern;
 
 public class ClientService implements IClientService {
 
-    private ClientDao clientDao;
+    private IClientDao iClientDao;
 
-    public ClientService(ClientDao clientDao) {
-        this.clientDao = clientDao;
+    public ClientService(IClientDao iClientDao) {
+        this.iClientDao = iClientDao;
     }
 
     public boolean isValidEmail(String email) {
@@ -30,11 +31,11 @@ public class ClientService implements IClientService {
             System.out.println("Invalid email");
             return -1;
         }
-        return clientDao.addClient(client);
+        return iClientDao.addClient(client);
     }
 
     public List<Client> getAllClients() {
-        return clientDao.getAllClients();
+        return iClientDao.getAllClients();
     }
 
     @Override
@@ -43,12 +44,12 @@ public class ClientService implements IClientService {
             System.out.println("Invalid email");
             return -1;
         }
-        return clientDao.updateProfile(client);
+        return iClientDao.updateProfile(client);
     }
 
     @Override
     public Client getClientByDetails(String firstName, String lastName, String email) {
-        return clientDao.getClientByDetails(firstName, lastName, email);
+        return iClientDao.getClientByDetails(firstName, lastName, email);
     }
 
     @Override

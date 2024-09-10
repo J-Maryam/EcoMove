@@ -1,6 +1,7 @@
 package services.Implementations;
 
 import dao.Implementations.PartnerDao;
+import dao.Interfaces.IPartnerDao;
 import models.entities.Partner;
 import services.Interfaces.IPartnerService;
 
@@ -8,29 +9,29 @@ import java.util.List;
 import java.util.UUID;
 
 public class PartnerService implements IPartnerService {
-    private PartnerDao partnerDao;
+    private IPartnerDao iPartnerDao;
 
-    public PartnerService(PartnerDao partnerDao) {
-        this.partnerDao = partnerDao;
+    public PartnerService(IPartnerDao iPartnerDao) {
+        this.iPartnerDao = iPartnerDao;
     }
 
     @Override
     public boolean addPartner(Partner partner) {
-        return partnerDao.addPartner(partner);
+        return iPartnerDao.addPartner(partner);
     }
 
     @Override
     public List<Partner> getAllPartners() {
-        return partnerDao.getAllPartners();
+        return iPartnerDao.getAllPartners();
     }
 
     @Override
     public int updatePartner(Partner partner) {
-        return partnerDao.updatePartner(partner);
+        return iPartnerDao.updatePartner(partner);
     }
 
     @Override
     public int deletePartner(UUID id) {
-        return partnerDao.deletePartner(id);
+        return iPartnerDao.deletePartner(id);
     }
 }

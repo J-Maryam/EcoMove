@@ -1,6 +1,7 @@
 package services.Implementations;
 
 import dao.Implementations.PromoDao;
+import dao.Interfaces.IPromoDao;
 import models.entities.Promotion;
 import services.Interfaces.IPromoService;
 
@@ -9,29 +10,29 @@ import java.util.UUID;
 
 public class PromoService implements IPromoService {
 
-    private PromoDao promoDao;
+    private IPromoDao iPromoDao;
 
     public PromoService(PromoDao promoDao) {
-        this.promoDao = promoDao;
+        this.iPromoDao = promoDao;
     }
 
     @Override
     public boolean addPromo(Promotion promo) {
-        return promoDao.addPromo(promo);
+        return iPromoDao.addPromo(promo);
     }
 
     @Override
     public List<Promotion> getAllPromotions() {
-        return promoDao.getAllPromotions();
+        return iPromoDao.getAllPromotions();
     }
 
     @Override
     public boolean updatePromo(Promotion promo) {
-        return promoDao.updatePromo(promo);
+        return iPromoDao.updatePromo(promo);
     }
 
     @Override
     public boolean deletePromo(UUID id) {
-        return promoDao.deletePromo(id);
+        return iPromoDao.deletePromo(id);
     }
 }
