@@ -45,44 +45,13 @@ create table promos
     foreign key (contractId) references contracts(id)
 );
 
-create table tickets
-(
-    id UUID primary key ,
-    transportType transportType,
-    purchasePrice decimal,
-    salePrice decimal,
-    saleDate date,
-    ticketStatus ticketStatus,
-    contractId UUID,
-    foreign key (contractId) references contracts(id)
-);
-
 create table clients
 (
     id UUID primary key,
     firstName varchar(50),
     lastName varchar(50),
-    email varchar(200) unique,
+    email varchar(200) unique not null ,
     phone varchar(20)
-);
-
-create table reservations
-(
-    id int primary key,
-    clientId int,
-    foreign key (clientId) references clients(id),
-    date date,
-    price float,
-    canceled boolean
-);
-
-create table reservationTicket
-(
-    id int primary key,
-    reservationId int,
-    foreign key (reservationId) references reservations(id),
-    ticketId UUID,
-    foreign key (ticketId) references tickets(id)
 );
 
 create table cities (
@@ -97,4 +66,37 @@ create table journeys(
     destinationCity int,
     foreign key (destinationCity) references cities(id),
     departureDate date
-)
+);
+
+create table tickets
+(
+    id UUID primary key ,
+    transportType transportType,
+    purchasePrice decimal,
+    salePrice decimal,
+    saleDate date,
+    ticketStatus ticketStatus,
+    contractId UUID,
+    foreign key (contractId) references contracts(id),
+    journeyId int,
+    foreign key (journeyId) references journeys (id)
+);
+
+create table reservations
+(
+    id UUID primary key,
+    clientId UUID,
+    foreign key (clientId) references clients(id),
+    date date,
+    price float,
+    canceled boolean
+);
+
+create table reservationTicket
+(
+    id int primary key,
+    reservationId UUID,
+    foreign key (reservationId) references reservations(id),
+    ticketId UUID,
+    foreign key (ticketId) references tickets(id)
+);
