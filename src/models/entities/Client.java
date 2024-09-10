@@ -10,6 +10,8 @@ public class Client {
     private String email;
     private String phone;
 
+    public Client() {}
+
     public Client(UUID id,String firstName, String lastName, String email, String phone) {
         this.id = id;
         this.firstName = firstName;

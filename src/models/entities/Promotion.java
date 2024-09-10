@@ -20,6 +20,8 @@ public class Promotion {
     private OfferStatus offerStatus;
     private UUID contractId;
 
+    public Promotion() {}
+
     public Promotion(UUID id, String offerName, String description, LocalDate startDate, LocalDate endDate, DiscountType discountType, float discountValue, String conditions, OfferStatus offerStatus, UUID contractId) {
 
         this.id = id;

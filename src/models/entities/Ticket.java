@@ -18,6 +18,8 @@ public class Ticket {
     private Contract contract;
     private Journey journey;
 
+    public Ticket() {}
+
     public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract) {
         this.id = id;
         this.transportType = transportType;

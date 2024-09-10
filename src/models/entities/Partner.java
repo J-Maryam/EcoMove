@@ -18,6 +18,8 @@ public class Partner {
     private PartnerStatus partnerStatus;
     private LocalDate creationDate;
 
+    public Partner() {}
+
     public Partner(UUID id, String companyName, String businessContact, TransportType transportType, String geographicZone, String specialConditions, PartnerStatus partnerStatus, LocalDate creationDate) {
         this.id = id;
         this.companyName = companyName;

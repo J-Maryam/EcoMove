@@ -16,6 +16,8 @@ public class Contract {
     private ContractStatus contractStatus;
     private UUID partnerId;
 
+    public Contract() {}
+
     public Contract(UUID id, LocalDate startDate, LocalDate endDate, float specialRate, String agreementConditions, boolean renewable, ContractStatus contractStatus, UUID partnerId) {
         this.id = id;
         this.startDate = startDate;
