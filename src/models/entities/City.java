@@ -1,11 +1,11 @@
 package models.entities;
 
-public class Cities {
+public class City {
 
     private int id;
     private String cityName;
 
-    public Cities(int id, String cityName) {
+    public City(int id, String cityName) {
         this.id = id;
         this.cityName = cityName;
     }
