@@ -16,6 +16,7 @@ public class Ticket {
     private LocalDate saleDate;
     private TicketStatus ticketStatus;
     private Contract contract;
+    private Journey journey;
 
     public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract) {
         this.id = id;
@@ -81,6 +82,14 @@ public class Ticket {
 
     public void setContract(Contract contract) {
         this.contract = contract;
+    }
+
+    public Journey getJourney() {
+        return journey;
+    }
+
+    public void setJourney(Journey journey) {
+        this.journey = journey;
     }
 
 }
