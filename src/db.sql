@@ -39,6 +39,7 @@ create table promos
     startDate date,
     endDate date,
     discountType discountType,
+    discountValue float,
     conditions text,
     offerStatus offerStatus,
     contractId UUID,
