@@ -47,6 +47,11 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public Client getClientByDetails(String firstName, String lastName, String email) {
+        return clientDao.getClientByDetails(firstName, lastName, email);
+    }
+
+    @Override
     public int deleteClient(int id) {
         return 0;
     }
@@ -55,11 +60,5 @@ public class ClientService implements IClientService {
     public void searchClient(Client client) {
 
     }
-
-    @Override
-    public void seConnect(Client client) {
-
-    }
-
 
 }

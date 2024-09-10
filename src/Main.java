@@ -2,6 +2,7 @@ import config.DbFunctions;
 import UI.*;
 import dao.Implementations.*;
 import dao.Interfaces.IClientDao;
+import models.entities.Client;
 import services.Implementations.*;
 import services.Interfaces.IClientService;
 
@@ -34,7 +35,7 @@ public class Main {
         ClientDao clientDao = new ClientDao(connection);
         ClientService clientService = new ClientService(clientDao);
         ClientMenu clientMenu = new ClientMenu(clientService);
-        clientMenu.updateProfile();
+        clientMenu.seConnect();
 
 
     }

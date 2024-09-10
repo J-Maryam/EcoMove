@@ -120,4 +120,51 @@ public class ClientMenu {
             System.out.println("Failed to update profile! Please try again.");
         }
     }
+
+    public void seConnect(){
+        System.out.println("==== Sign In ====");
+        System.out.println("Enter your first name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.println("Enter your last name: ");
+        String lastName = scanner.nextLine();
+
+        do {
+            System.out.println("Enter your email address: ");
+            email = scanner.nextLine();
+            if (iClientService.isValidEmail(email)) {
+                isEmailValid = true;
+            } else {
+                System.out.println("Invalid email. Please enter a valid email.");
+            }
+        } while (!isEmailValid);
+
+        Client client = iClientService.getClientByDetails(firstName, lastName, email);
+
+        if (client != null) {
+            System.out.println("You are authenticated successfully !");
+        }else {
+            System.out.println("You are not registered yet!");
+            System.out.println("Do you want to register? (yes/no)");
+            String answer = scanner.nextLine();
+
+            if (answer.equalsIgnoreCase("yes")) {
+
+                System.out.println("Enter your phone number: ");
+                String phone = scanner.nextLine();
+
+                client = new Client(UUID.randomUUID() ,firstName, lastName, email, phone);
+
+                int result = iClientService.addClient(client);
+
+                if (result > 0) {
+                    System.out.println("Client registered successfully !");
+                } else {
+                    System.out.println("Failed to register! Please try again.");
+                }
+            }else {
+                System.out.println("Registration canceled");
+            }
+        }
+    }
 }
