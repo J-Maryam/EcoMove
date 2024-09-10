@@ -20,6 +20,34 @@ public class ClientMenu {
         this.iClientService = iClientService;
     }
 
+    public void displayMenu() {
+        boolean running = true;
+
+        int choice;
+        while (running) {
+            System.out.println("==== Client Menu ====");
+            System.out.println("1. Update Profile");
+            System.out.println("2. Search Tickets");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    updateProfile();
+                    break;
+                case 2:
+//                    searcheeee ticket;
+                    break;
+                case 0:
+                    System.out.println("Exiting client menu...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
 
     public void addClient() {
 
