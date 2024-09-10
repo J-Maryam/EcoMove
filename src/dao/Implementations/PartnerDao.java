@@ -22,7 +22,7 @@ public class PartnerDao implements IPartnerDao {
     @Override
     public boolean addPartner(Partner partner)
     {
-        String sql = "insert into partner (id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into partners (id, companyName, businessContact, transportType, geographicZone, specialConditions, partnerStatus, creationDate) values (?,?,?,?,?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, partner.getId());
@@ -46,7 +46,7 @@ public class PartnerDao implements IPartnerDao {
 
     @Override
     public List<Partner> getAllPartners() {
-        String sql = "SELECT * FROM partner";
+        String sql = "SELECT * FROM partners";
         List<Partner> partners = new ArrayList<>();
 
         try (Statement statement = connection.createStatement()) {
@@ -75,7 +75,7 @@ public class PartnerDao implements IPartnerDao {
     @Override
     public int updatePartner(Partner partner)
     {
-        String sql = "UPDATE partner SET companyName = ?, businessContact = ?, transportType = ?, geographicZone = ?, specialConditions = ?, partnerStatus = ?, creationDate = ? WHERE id = ?";
+        String sql = "UPDATE partners SET companyName = ?, businessContact = ?, transportType = ?, geographicZone = ?, specialConditions = ?, partnerStatus = ?, creationDate = ? WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
@@ -100,7 +100,7 @@ public class PartnerDao implements IPartnerDao {
     @Override
     public int deletePartner(UUID id)
     {
-        String sql = "DELETE FROM partner WHERE id = ?";
+        String sql = "DELETE FROM partners WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, id);
 

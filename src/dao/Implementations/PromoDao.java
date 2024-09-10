@@ -23,7 +23,7 @@ public class PromoDao implements IPromoDao {
     @Override
     public boolean addPromo(Promotion promotion) {
 
-        String sql = "insert into promo (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into promos (id, offerName, description, startDate, endDate, discountType, discountValue, conditions, offerStatus, contractId) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -50,7 +50,7 @@ public class PromoDao implements IPromoDao {
     @Override
     public List<Promotion> getAllPromotions() {
 
-        String sql = "SELECT * FROM promo";
+        String sql = "SELECT * FROM promos";
         List<Promotion> promos = new ArrayList<>();
 
         try (PreparedStatement ps = connection.prepareStatement(sql);
@@ -76,12 +76,12 @@ public class PromoDao implements IPromoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return promos;
     }
 
     @Override
     public boolean updatePromo(Promotion promotion) {
-        String sql = "UPDATE promo SET offerName = ?, description = ?, startDate = ?, endDate = ?, discountType = ?, discountValue = ?, conditions = ?, offerStatus = ?, contractId = ? WHERE id = ?";
+        String sql = "UPDATE promos SET offerName = ?, description = ?, startDate = ?, endDate = ?, discountType = ?, discountValue = ?, conditions = ?, offerStatus = ?, contractId = ? WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
@@ -107,7 +107,7 @@ public class PromoDao implements IPromoDao {
 
     @Override
     public boolean deletePromo(UUID id) {
-        String sql = "DELETE FROM promo WHERE id = ?";
+        String sql = "DELETE FROM promos WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setObject(1, id);

@@ -1,5 +1,6 @@
 package dao.Implementations;
 
+import config.DbFunctions;
 import dao.Interfaces.IContractDao;
 import models.entities.Contract;
 import models.enums.ContractStatus;
@@ -12,10 +13,11 @@ import java.util.UUID;
 
 public class ContractDao implements IContractDao {
 
+//    private DbFunctions connection;
     private Connection connection;
 
 //    public ContractDao() {
-//        this.connection = DbFunctions.getInstance().connectToDb("EcoMove", "postgres", "@aahmhmm28");
+//        this.connection = DbFunctions.getInstance();
 //    }
 
     public ContractDao(Connection connection) {
@@ -24,7 +26,7 @@ public class ContractDao implements IContractDao {
 
     @Override
     public boolean addContract(Contract contract) {
-        String sql = "insert into contract (id, startDate, endDate, specialRate, agreementConditions, renewable, contractStatus, partnerId) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into contracts (id, startDate, endDate, specialRate, agreementConditions, renewable, contractStatus, partnerId) values(?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, contract.getId());
@@ -48,7 +50,7 @@ public class ContractDao implements IContractDao {
 
     @Override
     public List<Contract> getAllContracts() {
-        String sql = "SELECT * FROM contract";
+        String sql = "SELECT * FROM contracts";
         List<Contract> contracts = new ArrayList<>();
 
         try (Statement stmt = connection.createStatement();
@@ -77,7 +79,7 @@ public class ContractDao implements IContractDao {
 
     @Override
     public boolean updateContract(Contract contract) {
-        String sql = "update contract set startDate = ?, endDate = ?, specialRate = ?, agreementConditions = ?, renewable = ?, contractStatus = ?, partnerId = ? where id = ?";
+        String sql = "update contracts set startDate = ?, endDate = ?, specialRate = ?, agreementConditions = ?, renewable = ?, contractStatus = ?, partnerId = ? where id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
@@ -101,7 +103,7 @@ public class ContractDao implements IContractDao {
 
     @Override
     public boolean deleteContract(UUID id) {
-        String sql = "DELETE FROM contract WHERE id = ?";
+        String sql = "DELETE FROM contracts WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setObject(1, id);
@@ -117,7 +119,7 @@ public class ContractDao implements IContractDao {
 
     @Override
     public Contract getContractById(UUID id) {
-        String sql = "SELECT * FROM contract WHERE id = ?";
+        String sql = "SELECT * FROM contracts WHERE id = ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setObject(1, id, java.sql.Types.OTHER);
