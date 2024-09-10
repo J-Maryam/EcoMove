@@ -2,16 +2,17 @@ package UI;
 
 import models.entities.Client;
 import services.Implementations.ClientService;
+import services.Interfaces.IClientService;
 
 import java.util.Scanner;
 
 public class ClientMenu {
 
-    private ClientService clientService;
+    private IClientService iClientService;
     private Scanner scanner = new Scanner(System.in);
 
-    public ClientMenu(ClientService clientService) {
-        this.clientService = clientService;
+    public ClientMenu(IClientService iClientService) {
+        this.iClientService = iClientService;
     }
 
 
@@ -33,7 +34,7 @@ public class ClientMenu {
 
         Client client = new Client(firstName, lastName, email, phone);
 
-        int isAdded = clientService.addClient(client);
+        int isAdded = iClientService.addClient(client);
 
         if (isAdded > 0) {
             System.out.println("Client added successfully !");

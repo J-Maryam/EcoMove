@@ -4,18 +4,19 @@ import models.entities.Promotion;
 import models.enums.DiscountType;
 import models.enums.OfferStatus;
 import services.Implementations.PromoService;
+import services.Interfaces.IPromoService;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class PromoMenu {
 
-    private PromoService promoService;
+    private IPromoService iPromoService;
     private Scanner scanner = new Scanner(System.in);
     int choice;
 
-    public PromoMenu(PromoService promoService) {
-        this.promoService = promoService;
+    public PromoMenu(IPromoService iPromoService) {
+        this.iPromoService = iPromoService;
     }
 
     public void displayPromoMenu() {
@@ -102,7 +103,7 @@ public class PromoMenu {
                 contractId
         );
 
-        boolean isAdded = promoService.addPromo(promotion);
+        boolean isAdded = iPromoService.addPromo(promotion);
         if (isAdded) {
             System.out.println("Promotion added successfully.");
         } else {
@@ -113,7 +114,7 @@ public class PromoMenu {
 
     public void getAllPromotions(){
 
-        List<Promotion> promotions = promoService.getAllPromotions();
+        List<Promotion> promotions = iPromoService.getAllPromotions();
 
         if (promotions.isEmpty()) {
             System.out.println("There are no promotions.");
@@ -184,7 +185,7 @@ public class PromoMenu {
                 newContractId
         );
 
-        boolean updated = promoService.updatePromo(updatedPromo);
+        boolean updated = iPromoService.updatePromo(updatedPromo);
         if (updated) {
             System.out.println("Promotion updated successfully.");
         }else {
@@ -197,7 +198,7 @@ public class PromoMenu {
         System.out.println("Enter the ID of the promotion to delete: ");
         UUID promoId = UUID.fromString(scanner.nextLine());
 
-        boolean deleted =  promoService.deletePromo(promoId);
+        boolean deleted =  iPromoService.deletePromo(promoId);
         if (deleted) {
             System.out.println("Promotion deleted successfully.");
         }else {

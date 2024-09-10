@@ -4,6 +4,7 @@ import models.entities.Partner;
 import models.enums.PartnerStatus;
 import models.enums.TransportType;
 import services.Implementations.PartnerService;
+import services.Interfaces.IPartnerService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,13 +13,13 @@ import java.util.UUID;
 
 public class PartnerMenu {
 
-    private PartnerService partnerService;
+    private IPartnerService iPartnerService;
     private Scanner scanner = new Scanner(System.in);
     int choice;
 
 
-    public PartnerMenu(PartnerService partnerService) {
-        this.partnerService = partnerService;
+    public PartnerMenu(IPartnerService iPartnerService) {
+        this.iPartnerService = iPartnerService;
     }
 
     public void displayPartnerMenu() {
@@ -92,7 +93,7 @@ public class PartnerMenu {
                 LocalDate.now()
         );
 
-        boolean isAdded = partnerService.addPartner(partner);
+        boolean isAdded = iPartnerService.addPartner(partner);
         if (isAdded) {
             System.out.println("Partner added successfully");
         }else {
@@ -102,7 +103,7 @@ public class PartnerMenu {
     }
 
     public void getAllPartners(){
-        List<Partner> partners =  partnerService.getAllPartners();
+        List<Partner> partners =  iPartnerService.getAllPartners();
 
         if (partners.isEmpty()){
             System.out.println("No partners found");
@@ -155,7 +156,7 @@ public class PartnerMenu {
                 LocalDate.now()
         );
 
-        int updated = partnerService.updatePartner(updatedPartner);
+        int updated = iPartnerService.updatePartner(updatedPartner);
         if (updated > 0){
             System.out.println("Partner updated successfully");
         }else {
@@ -168,7 +169,7 @@ public class PartnerMenu {
         System.out.println("Enter the ID of the partner to delete: ");
         UUID partnerId = UUID.fromString(scanner.nextLine());
 
-        int deleted = partnerService.deletePartner(partnerId);
+        int deleted = iPartnerService.deletePartner(partnerId);
 
         if (deleted > 0){
             System.out.println("Partner deleted successfully");

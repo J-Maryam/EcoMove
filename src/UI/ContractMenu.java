@@ -3,6 +3,7 @@ package UI;
 import models.entities.Contract;
 import models.enums.ContractStatus;
 import services.Implementations.ContractService;
+import services.Interfaces.IContractService;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -13,13 +14,13 @@ import java.util.UUID;
 
 public class ContractMenu {
 
-    private ContractService contractService;
+    private IContractService iContractService;
     private Scanner scanner = new Scanner(System.in);
     int choice;
     boolean validDates = false;
 
-    public ContractMenu(ContractService contractService) {
-        this.contractService = contractService;
+    public ContractMenu(IContractService iContractService) {
+        this.iContractService = iContractService;
     }
 
     public void displayContractMenu() {
@@ -113,7 +114,7 @@ public class ContractMenu {
                 partnerId
         );
 
-        boolean isAdded = contractService.addContract(newContract);
+        boolean isAdded = iContractService.addContract(newContract);
         if (isAdded) {
             System.out.println("Contract added successfully.");
         } else {
@@ -122,7 +123,7 @@ public class ContractMenu {
     }
 
     public void getAllContracts() {
-        List<Contract> contracts = contractService.getAllContracts();
+        List<Contract> contracts = iContractService.getAllContracts();
 
         if (contracts.isEmpty()) {
             System.out.println("No contracts found.");
@@ -189,7 +190,7 @@ public class ContractMenu {
                 partnerId
         );
 
-        boolean isUpdated = contractService.updateContract(updatedContract);
+        boolean isUpdated = iContractService.updateContract(updatedContract);
         if (isUpdated) {
             System.out.println("Contract updated successfully.");
         }else {
@@ -202,7 +203,7 @@ public class ContractMenu {
         System.out.println("Enter the ID of the contract to delete (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        boolean isDeleted = contractService.deleteContract(contractId);
+        boolean isDeleted = iContractService.deleteContract(contractId);
 
         if (isDeleted) {
             System.out.println("Contract deleted successfully.");

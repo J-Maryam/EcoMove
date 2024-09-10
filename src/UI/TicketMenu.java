@@ -6,6 +6,8 @@ import models.enums.TicketStatus;
 import models.enums.TransportType;
 import services.Implementations.ContractService;
 import services.Implementations.TicketService;
+import services.Interfaces.IContractService;
+import services.Interfaces.ITicketService;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -18,11 +20,11 @@ public class TicketMenu {
     private Scanner scanner = new Scanner(System.in);
     int choice;
 
-    private ContractService contractService;
-    private TicketService ticketService;
+    private IContractService iContractService;
+    private ITicketService iTicketService;
 
-    public TicketMenu(TicketService ticketService) {
-        this.ticketService = ticketService;
+    public TicketMenu(ITicketService iTicketService) {
+        this.iTicketService = iTicketService;
     }
 
     public void displayTicketMenu() {
@@ -84,7 +86,7 @@ public class TicketMenu {
         System.out.println("Enter Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        Contract contract = contractService.getContractById(contractId);
+        Contract contract = iContractService.getContractById(contractId);
 
         if (contract == null) {
             System.out.println("Invalid Contract ID. Ticket creation failed.");
@@ -93,7 +95,7 @@ public class TicketMenu {
 
         Ticket ticket = new Ticket(UUID.randomUUID(), transportType, purchasePrice, salePrice, saleDate, ticketStatus, contract);
 
-        int result = ticketService.addTicket(ticket);
+        int result = iTicketService.addTicket(ticket);
 
         if (result > 0) {
             System.out.println("Ticket added successfully!");
@@ -103,7 +105,7 @@ public class TicketMenu {
     }
 
     private void getAllTickets() {
-        List<Ticket> tickets = ticketService.getAllTickets();
+        List<Ticket> tickets = iTicketService.getAllTickets();
 
         if (tickets.isEmpty()) {
             System.out.println("No tickets found.");
@@ -143,11 +145,11 @@ public class TicketMenu {
         System.out.println("Enter new Contract ID (UUID): ");
         UUID contractId = UUID.fromString(scanner.nextLine());
 
-        Contract contract = contractService.getContractById(contractId);
+        Contract contract = iContractService.getContractById(contractId);
 
 
         Ticket ticket = new Ticket(id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contract);
-        ticketService.updateTicket(ticket);
+        iTicketService.updateTicket(ticket);
 
         System.out.println("Ticket updated successfully!");
     }
@@ -156,7 +158,7 @@ public class TicketMenu {
         System.out.println("Enter Ticket ID to delete: ");
         UUID id = UUID.fromString(scanner.nextLine());
 
-        ticketService.deleteTicket(id);
+        iTicketService.deleteTicket(id);
 
         System.out.println("Ticket deleted successfully!");
     }
