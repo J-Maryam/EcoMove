@@ -1,7 +1,7 @@
 package models.enums;
 
 public enum PartnerStatus {
-    active,
-    inactive,
-    suspended
+    ACTIVE,
+    INACTIVE,
+    SUSPENDED,
 }

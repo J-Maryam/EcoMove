@@ -1,7 +1,7 @@
 package models.enums;
 
 public enum ContractStatus {
-    ongoing,
-    terminated,
-    suspended,
+    ONGOING,
+    TERMINATED,
+    SUSPENDED,
 }

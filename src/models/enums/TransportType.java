@@ -1,7 +1,7 @@
 package models.enums;
 
 public enum TransportType {
-    airplane,
-    train,
-    bus
+    AIRPLANE,
+    TRAIN,
+    BUS
 }
