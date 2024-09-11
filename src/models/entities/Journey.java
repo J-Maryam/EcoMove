@@ -1,14 +1,17 @@
 package models.entities;
 
+import java.time.LocalDate;
+
 public class Journey {
 
     private int id;
     private String departureCity;
     private String destinationCity;
+    private LocalDate departureDate;
 
     public Journey() {}
 
-    public Journey(int id, String departureCity, String destinationCity) {
+    public Journey(int id, String departureCity, String destinationCity, LocalDate departureDate) {
         this.id = id;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
@@ -36,6 +39,14 @@ public class Journey {
 
     public void setDestinationCity(String destinationCity) {
         this.destinationCity = destinationCity;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
 
 }
