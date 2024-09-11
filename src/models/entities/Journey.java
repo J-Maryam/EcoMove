@@ -5,16 +5,17 @@ import java.time.LocalDate;
 public class Journey {
 
     private int id;
-    private String departureCity;
-    private String destinationCity;
+    private City departureCity;
+    private City destinationCity;
     private LocalDate departureDate;
 
     public Journey() {}
 
-    public Journey(int id, String departureCity, String destinationCity, LocalDate departureDate) {
+    public Journey(City departureCity, City destinationCity, LocalDate departureDate) {
         this.id = id;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
+        this.departureDate = departureDate;
     }
 
     public int getId() {
@@ -25,19 +26,19 @@ public class Journey {
         this.id = id;
     }
 
-    public String getDepartureCity() {
+    public City getDepartureCity() {
         return departureCity;
     }
 
-    public void setDepartureCity(String departureCity) {
+    public void setDepartureCity(City departureCity) {
         this.departureCity = departureCity;
     }
 
-    public String getDestinationCity() {
+    public City getDestinationCity() {
         return destinationCity;
     }
 
-    public void setDestinationCity(String destinationCity) {
+    public void setDestinationCity(City destinationCity) {
         this.destinationCity = destinationCity;
     }
 

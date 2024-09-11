@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79dced6a-0197-4bd2-960c-e309a3df726a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/UI/JourneyMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/Implementations/CityDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/Interfaces/ICityDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/Implementations/CityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/Interfaces/ICityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/ClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ClientMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Implementations/PromoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Implementations/PromoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Implementations/JourneyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Implementations/JourneyDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/ContractStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/ContractStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/DiscountType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/DiscountType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/OfferStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/OfferStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/PartnerStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/PartnerStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/TicketStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/TicketStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/enums/TransportType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/enums/TransportType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/entities/Journey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/entities/Journey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/Implementations/JourneyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Implementations/JourneyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +136,11 @@
           <url>file://$PROJECT_DIR$/src/dao/Implementations/ContractDao.java</url>
           <line>99</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/JourneyMenu.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

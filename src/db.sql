@@ -56,12 +56,12 @@ create table clients
 );
 
 create table cities (
-    id int primary key,
-    cityName varchar(50)
+    id SERIAL primary key,
+    cityName varchar(50) unique
 );
 
 create table journeys(
-    id int primary key,
+    id SERIAL primary key,
     departureCity int,
     foreign key (departureCity) references cities(id),
     destinationCity int,
@@ -95,7 +95,7 @@ create table reservations
 
 create table reservationTicket
 (
-    id int primary key,
+    id SERIAL primary key,
     reservationId UUID,
     foreign key (reservationId) references reservations(id),
     ticketId UUID,
