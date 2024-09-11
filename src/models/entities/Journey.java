@@ -1,6 +1,7 @@
 package models.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Journey {
 
@@ -8,6 +9,7 @@ public class Journey {
     private City departureCity;
     private City destinationCity;
     private LocalDate departureDate;
+    private List<Ticket> tickets;
 
     public Journey() {}
 
@@ -48,6 +50,14 @@ public class Journey {
 
     public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
 }

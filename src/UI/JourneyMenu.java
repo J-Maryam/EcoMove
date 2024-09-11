@@ -42,10 +42,10 @@ public class JourneyMenu {
 
             switch (choice) {
                 case 1:
-                    ;
+                    addTrajet();
                     break;
                 case 2:
-                    ;
+                    getAllJourneys();
                     break;
                 case 3:
                     ;
@@ -113,5 +113,26 @@ public class JourneyMenu {
             System.out.println("Failed to add Journey.");
         }
     }
+
+    // Dans JourneyUI.java
+
+    public void getAllJourneys() {
+        System.out.println("=== All Journeys ===");
+
+        List<Journey> journeys = iJourneyService.getAllJourneys();
+
+        if (journeys.isEmpty()) {
+            System.out.println("No journeys available.");
+        } else {
+            for (Journey journey : journeys) {
+                System.out.println("ID: " + journey.getId());
+                System.out.println("Departure City: " + journey.getDepartureCity().getCityName());
+                System.out.println("Destination City: " + journey.getDestinationCity().getCityName());
+                System.out.println("Departure Date: " + journey.getDepartureDate());
+                System.out.println("-----------------------------");
+            }
+        }
+    }
+
 
 }

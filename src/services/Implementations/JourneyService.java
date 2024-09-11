@@ -24,7 +24,7 @@ public class JourneyService implements IJourneyService {
 
     @Override
     public List<Journey> getAllJourneys() {
-        return List.of();
+        return iJourneyDao.getAllJourneys();
     }
 
     @Override

@@ -44,10 +44,10 @@ public class Main {
         CityDao cityDao = new CityDao(connection);
         CityService cityService = new CityService(cityDao);
 
-        JourneyDao journeyDao = new JourneyDao(connection);
+        JourneyDao journeyDao = new JourneyDao(connection, cityService);
         JourneyService journeyService = new JourneyService(journeyDao);
         JourneyMenu journeyMenu= new JourneyMenu(journeyService, cityService);
-        journeyMenu.addTrajet();
+        journeyMenu.getAllJourneys();
 
     }
 }
