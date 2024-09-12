@@ -13,6 +13,9 @@ import services.Interfaces.ITicketService;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -110,8 +113,7 @@ public class TicketMenu {
         for (int i = 0; i < journeys.size(); i++){
             Journey journey = journeys.get(i);
             System.out.println((i+1) + ". Departure : " + journey.getDepartureCity().getCityName()
-                                    + " | Destination: " + journey.getDestinationCity().getCityName() +
-                    " | Departure Date: " + journey.getDepartureDate());
+                                    + " | Destination: " + journey.getDestinationCity().getCityName());
         }
 
         System.out.print("Select a journey (Enter number): ");
@@ -122,8 +124,17 @@ public class TicketMenu {
         }
         Journey selectedJourney = journeys.get(journeySelection);
 
-        System.out.println("Enter Departure Date (YYYY-MM-DD): ");
-        LocalDate departureDate = LocalDate.parse(scanner.nextLine());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime departureDate = null;
+        while (departureDate == null) {
+            try {
+                System.out.println("Enter Departure Date (YYYY-MM-DD HH:MM:SS): ");
+                departureDate = LocalDateTime.parse(scanner.nextLine(), formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please use YYYY-MM-DD HH:MM:SS");
+            }
+        }
+
 
 
         Ticket ticket = new Ticket(UUID.randomUUID(), transportType, purchasePrice, salePrice, null, ticketStatus, contract, selectedJourney, departureDate);

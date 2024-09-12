@@ -90,21 +90,13 @@ public class JourneyMenu {
             }
         } while (departureCityId == destinationCityId);
 
-        LocalDate departureDate = null;
-        while (departureDate == null) {
-            System.out.print("Enter Departure Date (YYYY-MM-DD): ");
-            String dateInput = scanner.nextLine();
-            try {
-                departureDate = LocalDate.parse(dateInput, DateTimeFormatter.ISO_LOCAL_DATE);
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
-            }
-        }
+        System.out.print("Enter Distance (in kilometers): ");
+        float distance = Float.parseFloat(scanner.nextLine());
 
         City departureCity = iCityService.getCityById(departureCityId);
         City destinationCity = iCityService.getCityById(destinationCityId);
 
-        Journey journey = new Journey(0, departureCity, destinationCity, departureDate);
+        Journey journey = new Journey(0, departureCity, destinationCity, distance);
 
         int result = iJourneyService.addJourney(journey);
         if (result > 0) {
@@ -128,7 +120,7 @@ public class JourneyMenu {
                 System.out.println("ID: " + journey.getId());
                 System.out.println("Departure City: " + journey.getDepartureCity().getCityName());
                 System.out.println("Destination City: " + journey.getDestinationCity().getCityName());
-                System.out.println("Departure Date: " + journey.getDepartureDate());
+                System.out.println("Distance : " + journey.getDistance());
                 System.out.println("-----------------------------");
             }
         }

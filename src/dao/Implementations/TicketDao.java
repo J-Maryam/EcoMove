@@ -34,7 +34,7 @@ public class TicketDao implements ITicketDao {
             ps.setObject(6, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(7, ticket.getContract().getId());
             ps.setObject(8, ticket.getJourney().getId() , java.sql.Types.OTHER);
-            ps.setObject(3, ticket.getDepartureDate());
+            ps.setTimestamp(9, Timestamp.valueOf(ticket.getDepartureDate()));
 
             int isAdded = ps.executeUpdate();
             return isAdded;

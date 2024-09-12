@@ -28,12 +28,12 @@ public class JourneyDao implements IJourneyDao {
 
     @Override
     public int addJourney(Journey journey) {
-        String sql = "insert into journeys (departureCity, destinationCity, departureDate) values (?, ?, ?)";
+        String sql = "insert into journeys (departureCity, destinationCity, distance) values (?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setObject(1, journey.getDepartureCity().getId());
             ps.setObject(2, journey.getDestinationCity().getId());
-            ps.setObject(3, journey.getDepartureDate());
+            ps.setFloat(3, journey.getDistance());
 
             return ps.executeUpdate();
         }catch (SQLException e){
@@ -53,11 +53,11 @@ public class JourneyDao implements IJourneyDao {
                 int id = rs.getInt("id");
                 int departureCityById = rs.getInt("departureCity");
                 int destinationCityById = rs.getInt("destinationCity");
-                LocalDate departureDate = rs.getDate("departureDate").toLocalDate();
+                float distance =rs.getFloat("distance");
 
                 City departureCity = iCityService.getCityById(departureCityById);
                 City destinationCity = iCityService.getCityById(destinationCityById);
-                Journey journey = new Journey(id, departureCity, destinationCity, departureDate);
+                Journey journey = new Journey(id, departureCity, destinationCity, distance);
 
                 journeys.add(journey);
             }

@@ -8,16 +8,16 @@ public class Journey {
     private int id;
     private City departureCity;
     private City destinationCity;
-    private LocalDate departureDate;
+    private float distance;
     private List<Ticket> tickets;
 
     public Journey() {}
 
-    public Journey(int id,City departureCity, City destinationCity, LocalDate departureDate) {
+    public Journey(int id,City departureCity, City destinationCity, float distance) {
         this.id = id;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
-        this.departureDate = departureDate;
+        this.distance = distance;
     }
 
     public int getId() {
@@ -44,12 +44,12 @@ public class Journey {
         this.destinationCity = destinationCity;
     }
 
-    public LocalDate getDepartureDate() {
-        return departureDate;
+    public float getDistance() {
+        return distance;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
-        this.departureDate = departureDate;
+    public void setDistance(float distance) {
+        this.distance = distance;
     }
 
     public List<Ticket> getTickets() {

@@ -4,6 +4,7 @@ import models.enums.TicketStatus;
 import models.enums.TransportType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,11 +18,11 @@ public class Ticket {
     private TicketStatus ticketStatus;
     private Contract contract;
     private Journey journey;
-    private LocalDate departureDate;
+    private LocalDateTime departureDate;
 
     public Ticket() {}
 
-    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract, Journey journey, LocalDate departureDate) {
+    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract, Journey journey, LocalDateTime departureDate) {
         this.id = id;
         this.transportType = transportType;
         this.purchasePrice = purchasePrice;
@@ -97,11 +98,11 @@ public class Ticket {
         this.journey = journey;
     }
 
-    public LocalDate getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
+    public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
 
