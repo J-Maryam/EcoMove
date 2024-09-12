@@ -23,17 +23,18 @@ public class TicketDao implements ITicketDao {
 
     @Override
     public int addTicket(Ticket ticket) {
-        String sql = "insert into tickets (id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contractId, journeyId) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into tickets (id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contractId, journeyId, departureDate) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, ticket.getId(), java.sql.Types.OTHER);
             ps.setObject(2, ticket.getTransportType().toString(), java.sql.Types.OTHER);
             ps.setFloat(3, ticket.getPurchasePrice());
             ps.setFloat(4, ticket.getSalePrice());
-            ps.setObject(5, ticket.getSaleDate());
+            ps.setNull(5, java.sql.Types.DATE);
             ps.setObject(6, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
             ps.setObject(7, ticket.getContract().getId());
             ps.setObject(8, ticket.getJourney().getId() , java.sql.Types.OTHER);
+            ps.setObject(3, ticket.getDepartureDate());
 
             int isAdded = ps.executeUpdate();
             return isAdded;

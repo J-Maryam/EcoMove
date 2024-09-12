@@ -17,10 +17,11 @@ public class Ticket {
     private TicketStatus ticketStatus;
     private Contract contract;
     private Journey journey;
+    private LocalDate departureDate;
 
     public Ticket() {}
 
-    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract, Journey journey ) {
+    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract, Journey journey, LocalDate departureDate) {
         this.id = id;
         this.transportType = transportType;
         this.purchasePrice = purchasePrice;
@@ -29,6 +30,7 @@ public class Ticket {
         this.ticketStatus = ticketStatus;
         this.contract = contract;
         this.journey = journey;
+        this.departureDate = departureDate;
     }
 
     public UUID getId() {
@@ -93,6 +95,14 @@ public class Ticket {
 
     public void setJourney(Journey journey) {
         this.journey = journey;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
     }
 
 }

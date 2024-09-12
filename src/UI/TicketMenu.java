@@ -88,9 +88,6 @@ public class TicketMenu {
         System.out.println("Enter Sale Price: ");
         float salePrice = Float.parseFloat(scanner.nextLine());
 
-        System.out.println("Enter Sale Date (YYYY-MM-DD): ");
-        LocalDate saleDate = LocalDate.parse(scanner.nextLine());
-
         System.out.println("Select Ticket Status:");
         for (TicketStatus status : TicketStatus.values()) {
             System.out.println(status.ordinal() + ". " + status.name());
@@ -125,8 +122,11 @@ public class TicketMenu {
         }
         Journey selectedJourney = journeys.get(journeySelection);
 
+        System.out.println("Enter Departure Date (YYYY-MM-DD): ");
+        LocalDate departureDate = LocalDate.parse(scanner.nextLine());
 
-        Ticket ticket = new Ticket(UUID.randomUUID(), transportType, purchasePrice, salePrice, saleDate, ticketStatus, contract, selectedJourney);
+
+        Ticket ticket = new Ticket(UUID.randomUUID(), transportType, purchasePrice, salePrice, null, ticketStatus, contract, selectedJourney, departureDate);
 
         int result = iTicketService.addTicket(ticket);
 

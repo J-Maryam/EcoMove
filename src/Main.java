@@ -47,7 +47,7 @@ public class Main {
         JourneyDao journeyDao = new JourneyDao(connection, cityService);
         JourneyService journeyService = new JourneyService(journeyDao);
 //        JourneyMenu journeyMenu= new JourneyMenu(journeyService, cityService);
-//        journeyMenu.getAllJourneys();
+//        journeyMenu.addTrajet();
 
         ContractDao contractDao = new ContractDao(connection);
         ContractService contractService = new ContractService(contractDao);
