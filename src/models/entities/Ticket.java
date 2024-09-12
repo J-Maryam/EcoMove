@@ -20,7 +20,7 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract) {
+    public Ticket(UUID id, TransportType transportType, float purchasePrice, float salePrice, LocalDate saleDate, TicketStatus ticketStatus, Contract contract, Journey journey ) {
         this.id = id;
         this.transportType = transportType;
         this.purchasePrice = purchasePrice;
@@ -28,6 +28,7 @@ public class Ticket {
         this.saleDate = saleDate;
         this.ticketStatus = ticketStatus;
         this.contract = contract;
+        this.journey = journey;
     }
 
     public UUID getId() {

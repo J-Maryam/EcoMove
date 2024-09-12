@@ -8,9 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/JourneyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/JourneyMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/TicketMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/TicketMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/Implementations/JourneyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Implementations/JourneyDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Implementations/TicketDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Implementations/TicketDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/entities/Journey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/entities/Journey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Implementations/JourneyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Implementations/JourneyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/entities/Ticket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

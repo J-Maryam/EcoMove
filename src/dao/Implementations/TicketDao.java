@@ -23,7 +23,7 @@ public class TicketDao implements ITicketDao {
 
     @Override
     public int addTicket(Ticket ticket) {
-        String sql = "insert into tickets (id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contractId) values(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into tickets (id, transportType, purchasePrice, salePrice, saleDate, ticketStatus, contractId, journeyId) values(?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setObject(1, ticket.getId(), java.sql.Types.OTHER);
@@ -32,7 +32,8 @@ public class TicketDao implements ITicketDao {
             ps.setFloat(4, ticket.getSalePrice());
             ps.setObject(5, ticket.getSaleDate());
             ps.setObject(6, ticket.getTicketStatus().toString(), java.sql.Types.OTHER);
-            ps.setObject(7, ticket.getContract().getId(), java.sql.Types.OTHER);
+            ps.setObject(7, ticket.getContract().getId());
+            ps.setObject(8, ticket.getJourney().getId() , java.sql.Types.OTHER);
 
             int isAdded = ps.executeUpdate();
             return isAdded;
@@ -50,44 +51,45 @@ public class TicketDao implements ITicketDao {
 
         List<Ticket> tickets = new ArrayList<>();
 
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                UUID ticketId = UUID.fromString(rs.getString("id"));
-                TransportType transportType = TransportType.valueOf(rs.getString("transportType"));
-                float purchasePrice = rs.getFloat("purchasePrice");
-                float salePrice = rs.getFloat("salePrice");
-                LocalDate saleDate = LocalDate.parse(rs.getString("saleDate"));
-                TicketStatus ticketStatus = TicketStatus.valueOf(rs.getString("ticketStatus"));
-
-                UUID contractId = UUID.fromString(rs.getString("contractId"));
-                Contract contract = new Contract(
-                        contractId,
-                        rs.getObject("startDate", LocalDate.class),
-                        rs.getObject("endDate", LocalDate.class),
-                        rs.getFloat("specialRate"),
-                        rs.getString("agreementConditions"),
-                        rs.getBoolean("renewable"),
-                        ContractStatus.valueOf(rs.getString("contractStatus")),
-                        contractId
-                );
-
-                Ticket ticket = new Ticket(
-                        ticketId,
-                        transportType,
-                        purchasePrice,
-                        salePrice,
-                        saleDate,
-                        ticketStatus,
-                        contract
-                );
-                tickets.add(ticket);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+//            ResultSet rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                UUID ticketId = UUID.fromString(rs.getString("id"));
+//                TransportType transportType = TransportType.valueOf(rs.getString("transportType"));
+//                float purchasePrice = rs.getFloat("purchasePrice");
+//                float salePrice = rs.getFloat("salePrice");
+//                LocalDate saleDate = LocalDate.parse(rs.getString("saleDate"));
+//                TicketStatus ticketStatus = TicketStatus.valueOf(rs.getString("ticketStatus"));
+//
+//                UUID contractId = UUID.fromString(rs.getString("contractId"));
+//                Contract contract = new Contract(
+//                        contractId,
+//                        rs.getObject("startDate", LocalDate.class),
+//                        rs.getObject("endDate", LocalDate.class),
+//                        rs.getFloat("specialRate"),
+//                        rs.getString("agreementConditions"),
+//                        rs.getBoolean("renewable"),
+//                        ContractStatus.valueOf(rs.getString("contractStatus")),
+//                        contractId
+//                );
+//
+//                Ticket ticket = new Ticket(
+//                        ticketId,
+//                        transportType,
+//                        purchasePrice,
+//                        salePrice,
+//                        saleDate,
+//                        ticketStatus,
+//                        contract,
+//                        journeyId
+//                );
+//                tickets.add(ticket);
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return tickets;
     }
 

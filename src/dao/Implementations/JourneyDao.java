@@ -50,13 +50,14 @@ public class JourneyDao implements IJourneyDao {
         try (PreparedStatement ps = connection.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
+                int id = rs.getInt("id");
                 int departureCityById = rs.getInt("departureCity");
                 int destinationCityById = rs.getInt("destinationCity");
                 LocalDate departureDate = rs.getDate("departureDate").toLocalDate();
 
                 City departureCity = iCityService.getCityById(departureCityById);
                 City destinationCity = iCityService.getCityById(destinationCityById);
-                Journey journey = new Journey(departureCity, destinationCity, departureDate);
+                Journey journey = new Journey(id, departureCity, destinationCity, departureDate);
 
                 journeys.add(journey);
             }

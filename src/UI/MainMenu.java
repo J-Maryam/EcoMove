@@ -56,8 +56,8 @@ public class MainMenu {
                     contractMenu.displayContractMenu();
                     break;
                 case 3:
-                    TicketMenu ticketMenu = new TicketMenu(iTicketService);
-                    ticketMenu.displayTicketMenu();
+//                    TicketMenu ticketMenu = new TicketMenu(iTicketService);
+//                    ticketMenu.displayTicketMenu();
                     break;
                 case 4:
                     PromoMenu promoMenu = new PromoMenu(iPromoService);

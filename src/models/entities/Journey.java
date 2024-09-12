@@ -13,7 +13,7 @@ public class Journey {
 
     public Journey() {}
 
-    public Journey(City departureCity, City destinationCity, LocalDate departureDate) {
+    public Journey(int id,City departureCity, City destinationCity, LocalDate departureDate) {
         this.id = id;
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;

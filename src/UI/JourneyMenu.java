@@ -104,7 +104,7 @@ public class JourneyMenu {
         City departureCity = iCityService.getCityById(departureCityId);
         City destinationCity = iCityService.getCityById(destinationCityId);
 
-        Journey journey = new Journey(departureCity, destinationCity, departureDate);
+        Journey journey = new Journey(0, departureCity, destinationCity, departureDate);
 
         int result = iJourneyService.addJourney(journey);
         if (result > 0) {
