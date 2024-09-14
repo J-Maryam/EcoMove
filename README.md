@@ -79,7 +79,7 @@ Voici le diagramme UML des classes utilisées dans le projet. Vous pouvez y acc�
 ## Gestion de Projet - Jira
 Les issues du projet sont gérées via Jira. Vous pouvez accéder aux tickets en suivant ce lien :
 
-- [Accès Jira](https://maryamjammar1509-1724855071586.atlassian.net/jira/software/projects/EM/boards/1?sprintStarted=true&atlOrigin=eyJpIjoiMWRmMzQ3YzY3ZDBjNDUzNzkxMTI2MjMzMjdlZTA3MjMiLCJwIjoiaiJ9)
+- [Accès Jira](https://maryamjammar1509-1724855071586.atlassian.net/jira/software/projects/EM/boards/1/backlog?epics=visible&issueParent=10007%2C10021%2C10022%2C10023%2C10083%2C10090%2C10097%2C10033&atlOrigin=eyJpIjoiMjZmM2ZlMTExMTM5NGJiMWI3MDVhNGNlY2ExYTgxYzkiLCJwIjoiaiJ9)
 
 ### Configuration de la Base de Données
 1. Créez une base de données PostgreSQL :
